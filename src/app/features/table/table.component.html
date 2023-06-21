@@ -1,20 +1,23 @@
 <div class="container table">
   <div class="row table-services">
-    <div class="col-6">Description</div>
-    <div class="col">Quantity</div>
-    <div class="col">Price</div>
-    <div class="col">Total</div>
+    <div class="description">Description</div>
+    <div class="quantity">Quantity</div>
+    <div class="price">Unit Price</div>
+    <div class="total">Total</div>
   </div>
   <div class="row table-items" *ngFor="let item of items">
-    <div class="col-6 description">{{ item.description }}</div>
-    <div class="col">{{ item.quantity }}</div>
-    <div class="col">${{ item.price }} USD</div>
-    <div class="col total">${{ (item.price * item.quantity).toFixed(2) }}</div>
+    <div class="description">{{ item.description }}</div>
+    <div class="quantity">{{ item.quantity }}</div>
+    <div class="price">${{ item.price }} USD</div>
+    <div class="total">${{ (item.price * item.quantity).toFixed(2) }}</div>
   </div>
+</div>
+
+<div class="container">
   <div class="row table-total" *ngIf="show">
     <div class="col-8">Remarks / Payment instructions:</div>
-    <div class="col">Subtotal</div>
-    <div class="col">${{ subtotal }}</div>
+    <div class="col subtotal">SUBTOTAL</div>
+    <div class="col subtotal">${{ subtotal }}</div>
   </div>
   <form #itemForm="ngForm" (ngSubmit)="addNewItem(); resetItem()">
     <label for="text">
@@ -46,4 +49,11 @@
     </label>
     <button class="button" type="submit">Add Item</button>
   </form>
+</div>
+
+<div class="container" *ngIf="show">
+  <div class="row balance-due">
+    <div class="col-10">Balance Due</div>
+    <div class="col">$1231</div>
+  </div>
 </div>

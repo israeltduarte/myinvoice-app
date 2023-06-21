@@ -1,19 +1,13 @@
 body {
-    margin: 0 auto;
-    height: auto;
-    width: 1024px;
-    font-size: 20px;
+  margin: 0 auto;
+  height: auto;
+  width: 1024px;
 }
 
-.header, .footer {
-    background-color: #c72525;
-}
-
-.header {
-    margin-top: 30px;
-    height: 30px;
-}
-
+.header,
 .footer {
-    margin-top: 30px;
+  background-color: #c72525;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 40px;
 }

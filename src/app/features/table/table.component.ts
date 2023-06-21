@@ -8,10 +8,16 @@ import { Item } from './item';
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent {
-  items: Item[] = [];
+  items: Item[] = [
+    // { description: 'consultancy services', quantity: 12, price: 12, total: 0 },
+  ];
   subtotal: string = '';
   item: Item = new Item('', 0, 0, 0);
   show: boolean = false;
+
+  ngOnInit() {
+    this.show = this.items.length > 0;
+  }
 
   addNewItem(): void {
     this.items.push(this.item);
