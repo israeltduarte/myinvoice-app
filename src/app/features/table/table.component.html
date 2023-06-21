@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row table-services">
+    <div class="col-6">Description</div>
+    <div class="col">Quantity</div>
+    <div class="col">Price</div>
+    <div class="col">Total</div>
+  </div>
+  <div class="row table-items" *ngFor="let item of items">
+    <div class="col-6">{{ item.description }}</div>
+    <div class="col">{{ item.quantity }}</div>
+    <div class="col">{{ item.price }}</div>
+    <div class="col">${{ (item.price * item.quantity).toFixed(2) }}</div>
+  </div>
+  <div class="row table-total" *ngIf="show">
+    <div class="col-8">Remarks / Payment instructions:</div>
+    <div class="col">Subtotal</div>
+    <div class="col">${{ subtotal }}</div>
+  </div>
+  <form #itemForm="ngForm" (ngSubmit)="addNewItem(); resetItem()">
+    <label for="text">
+      <input
+        type="text"
+        [(ngModel)]="item.description"
+        name="description"
+        #description="ngModel"
+        required
+      />
+    </label>
+    <label for="text">
+      <input
+        type="number"
+        [(ngModel)]="item.quantity"
+        name="quantity"
+        #quantity="ngModel"
+        required
+      />
+    </label>
+    <label for="text">
+      <input
+        type="number"
+        [(ngModel)]="item.price"
+        name="price"
+        #price="ngModel"
+        required
+      />
+    </label>
+    <button class="button" type="submit">Add Item</button>
+  </form>
+</div>
