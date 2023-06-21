@@ -12,12 +12,26 @@
   padding: 0;
 }
 
-.table-items {
-  margin: auto;
+.table-services {
+  text-align: center;
 }
 
-/* .table-items div {
-} */
+.description {
+  text-align: left;
+}
+
+.total {
+  text-align: right;
+}
+
+.table-items {
+  margin: auto;
+  text-align: center;
+}
+
+.table-items div {
+  border: 1px solid gray;
+}
 
 .table-total {
   margin: auto;
