@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as converter from 'number-to-words';
 
 import { Item } from './item';
 
@@ -9,14 +10,27 @@ import { Item } from './item';
 })
 export class TableComponent {
   items: Item[] = [
-    // { description: 'consultancy services', quantity: 12, price: 12, total: 0 },
+    {
+      description: 'software development services',
+      quantity: 64,
+      price: 19,
+      total: 0,
+    },
+    {
+      description: 'software development extra hours',
+      quantity: 12,
+      price: 22,
+      total: 0,
+    },
   ];
   subtotal: string = '';
+  wordsSubtotal: string = '';
   item: Item = new Item('', 0, 0, 0);
   show: boolean = false;
 
   ngOnInit() {
     this.show = this.items.length > 0;
+    this.calculateSubTotal();
   }
 
   addNewItem(): void {
@@ -33,6 +47,15 @@ export class TableComponent {
         0
       )
       .toFixed(2);
+    this.wordsSubtotal = converter.toWords(this.subtotal);
+  }
+
+  removeItem(item: Item): void {
+    const index = this.items.indexOf(item);
+    if (index !== -1) {
+      this.items.splice(index, 1);
+      this.calculateSubTotal();
+    }
   }
 
   resetItem(): void {

@@ -1,5 +1,4 @@
 .table-services {
-  /* width: auto; */
   margin: auto;
   border-spacing: 0px;
   color: white;
@@ -27,10 +26,7 @@
   width: 12%;
 }
 
-.price {
-  width: 16%;
-}
-
+.price,
 .total {
   width: 16%;
 }
@@ -42,6 +38,7 @@
 
 .subtotal {
   text-align: right;
+  font-weight: bold;
 }
 
 .table {
@@ -62,25 +59,167 @@
   padding: 5px;
 }
 
-.table-total {
-  margin: auto;
-  background-color: green;
-  margin-bottom: 10px;
-  padding: 5px;
-}
-
-.table-total div {
-  padding: 0;
-}
-
 .new-item {
-  margin: auto;
+  margin-bottom: 10px;
+}
+
+.new-item form {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
 }
 
 .new-item input {
   width: 100%;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.container.new-item input:focus {
+  outline: none;
+  border-color: #5cb85c;
+}
+
+.container.new-item button {
+  width: 24px;
+  height: 24px;
+  background-color: #83cd83;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 8px;
+  padding: unset;
+}
+
+.remove-button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f4c8cd;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  margin-left: 70%;
+  margin-top: 6px;
+}
+
+.container.new-item button:hover {
+  background-color: #4cae4c;
+}
+
+.container.new-item button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.5);
 }
 
 .balance-due {
   text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.words-subtotal {
+  text-transform: capitalize;
+}
+
+.company-name,
+.company-number,
+.client-name,
+.client-number {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.company-from,
+.client-to {
+  border-bottom: 1px solid gray;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.company-from,
+.client-to,
+.invoice-title {
+  color: gray;
+}
+
+/* .company-address {
+}
+
+.company-phone {
+}
+
+.company-email {
+} */
+
+.client,
+.company {
+  margin-bottom: 30px;
+}
+
+.remove-button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f4c8cd;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  margin-left: 70%;
+  margin-top: 6px;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
+}
+
+.remove-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.5);
+}
+
+h1 {
+  font-weight: bold;
+}
+
+.invoice {
+  margin-bottom: 60px;
+}
+
+.invoice-number,
+.invoice-date {
+  text-align: right;
+}
+
+.invoice-number {
+  border-bottom: 1px solid gray;
+}
+
+.invoice-date {
+  font-weight: bold;
 }

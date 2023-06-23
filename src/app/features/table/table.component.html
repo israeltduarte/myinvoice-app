@@ -1,3 +1,47 @@
+<div class="container invoice">
+  <div class="row">
+    <div class="col-10">
+      <h1 class="invoice-title">INVOICE</h1>
+    </div>
+    <div class="col-2">
+      <div class="invoice-number">#001</div>
+      <div class="invoice-date">June 22, 2023</div>
+    </div>
+  </div>
+</div>
+
+<div class="container company">
+  <div class="row">
+    <div class="col-6">
+      <div class="company-from">FROM</div>
+      <div class="company-name">
+        AAAAA BBBBB CCCCCC CONSULTORIA EM TECNOLOGIA DA INFORMAÇÃO LTDA
+      </div>
+      <div class="company-number">CNPJ: 12.345.789/0001-00</div>
+      <div class="company-address">
+        Av. Jose Bonifacio 1111, APT 09, Jardim Flamboyant, Barcelona, São
+        Paulo, 13000-000, Brasil
+      </div>
+      <div class="company-phone">Telefone: +55 (41) 9788-0145</div>
+      <div class="company-email">E-mail: israel@terraduarte.com.br</div>
+    </div>
+  </div>
+</div>
+
+<div class="container client">
+  <div class="row">
+    <div class="col-6">
+      <div class="client-to">BILL TO</div>
+      <div class="client-name">ZAZZZZZ INC</div>
+      <div class="client-number">San Franciso Corporate Number C123123123</div>
+      <div class="client-address">
+        99 Coleridge st, San Francisco, CA<br />
+        Code: CA123123123, USA
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="container table">
   <div class="row table-services">
     <div class="description">Description</div>
@@ -10,17 +54,13 @@
     <div class="quantity">{{ item.quantity }}</div>
     <div class="price">${{ item.price }} USD</div>
     <div class="total">${{ (item.price * item.quantity).toFixed(2) }}</div>
+    <button class="remove-button" (click)="removeItem(item)">X</button>
   </div>
 </div>
 
-<div class="container">
-  <div class="row table-total" *ngIf="show">
-    <div class="col-8">Remarks / Payment instructions:</div>
-    <div class="col subtotal">SUBTOTAL</div>
-    <div class="col subtotal">${{ subtotal }}</div>
-  </div>
+<div class="container new-item">
   <form #itemForm="ngForm" (ngSubmit)="addNewItem(); resetItem()">
-    <label for="text">
+    <div class="description">
       <input
         type="text"
         [(ngModel)]="item.description"
@@ -28,8 +68,8 @@
         #description="ngModel"
         required
       />
-    </label>
-    <label for="text">
+    </div>
+    <div class="quantity">
       <input
         type="number"
         [(ngModel)]="item.quantity"
@@ -37,8 +77,8 @@
         #quantity="ngModel"
         required
       />
-    </label>
-    <label for="text">
+    </div>
+    <div class="price">
       <input
         type="number"
         [(ngModel)]="item.price"
@@ -46,14 +86,21 @@
         #price="ngModel"
         required
       />
-    </label>
-    <button class="button" type="submit">Add Item</button>
+    </div>
+    <div class="total">
+      <button class="button" type="submit">✓</button>
+    </div>
   </form>
 </div>
 
 <div class="container" *ngIf="show">
   <div class="row balance-due">
     <div class="col-10">Balance Due</div>
-    <div class="col">$1231</div>
+    <div class="col">
+      $ {{ subtotal }}
+      <div class="col words-subtotal">
+        ({{ wordsSubtotal }} American Dollars)
+      </div>
+    </div>
   </div>
 </div>
