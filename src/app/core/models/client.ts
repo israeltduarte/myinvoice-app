@@ -1,4 +1,4 @@
-export class Company {
+export class Client {
   constructor(
     public name: string,
     public number: string,

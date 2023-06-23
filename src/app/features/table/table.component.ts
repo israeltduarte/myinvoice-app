@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import * as converter from 'number-to-words';
 import { trigger, style, animate, transition } from '@angular/animations';
 
-import { Item } from './item';
+import { Item } from 'src/app/core/models/item';
 
 @Component({
   selector: 'app-items-table',
