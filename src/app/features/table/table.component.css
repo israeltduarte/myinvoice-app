@@ -78,15 +78,15 @@
   transition: border-color 0.3s;
 }
 
-.container.new-item input:focus {
+.new-item input:focus {
   outline: none;
-  border-color: #5cb85c;
+  border-color: #92c392;
 }
 
-.container.new-item button {
+.new-item button {
   width: 24px;
   height: 24px;
-  background-color: #83cd83;
+  background-color: #bbebbb;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -96,6 +96,47 @@
   transition: background-color 0.3s;
   margin-left: 8px;
   padding: unset;
+}
+
+.new-item button:hover {
+  background-color: #4cae4c;
+}
+
+.new-item button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.5);
+}
+
+.fade-out {
+  animation: fadeOut 300ms ease-out;
+  opacity: 0;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 300ms ease-out;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .remove-button {
@@ -115,15 +156,6 @@
   position: absolute;
   margin-left: 70%;
   margin-top: 6px;
-}
-
-.container.new-item button:hover {
-  background-color: #4cae4c;
-}
-
-.container.new-item button:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.5);
 }
 
 .balance-due {

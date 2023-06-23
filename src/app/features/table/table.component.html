@@ -15,7 +15,7 @@
     <div class="col-6">
       <div class="company-from">FROM</div>
       <div class="company-name">
-        AAAAA BBBBB CCCCCC CONSULTORIA EM TECNOLOGIA DA INFORMAÇÃO LTDA
+        ISRAEL DUARTE CONSULTORIA EM TECNOLOGIA DA INFORMAÇÃO LTDA
       </div>
       <div class="company-number">CNPJ: 12.345.789/0001-00</div>
       <div class="company-address">
@@ -32,7 +32,7 @@
   <div class="row">
     <div class="col-6">
       <div class="client-to">BILL TO</div>
-      <div class="client-name">ZAZZZZZ INC</div>
+      <div class="client-name">GOODLE INC</div>
       <div class="client-number">San Franciso Corporate Number C123123123</div>
       <div class="client-address">
         99 Coleridge st, San Francisco, CA<br />
@@ -49,7 +49,11 @@
     <div class="price">Unit Price</div>
     <div class="total">Total</div>
   </div>
-  <div class="row table-items" *ngFor="let item of items">
+  <div
+    class="row table-items"
+    *ngFor="let item of items"
+    [ngClass]="{ 'fade-out': item.removing, 'fade-in': item.adding }"
+  >
     <div class="description">{{ item.description }}</div>
     <div class="quantity">{{ item.quantity }}</div>
     <div class="price">${{ item.price }} USD</div>
