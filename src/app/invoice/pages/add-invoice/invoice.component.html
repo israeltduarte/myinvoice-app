@@ -14,16 +14,17 @@
   <div class="row">
     <div class="col-6">
       <div class="company-from">FROM</div>
-      <div class="company-name">
-        ISRAEL DUARTE CONSULTORIA EM TECNOLOGIA DA INFORMAÇÃO LTDA
-      </div>
-      <div class="company-number">CNPJ: 12.345.789/0001-00</div>
+      <div class="company-name">{{ company.name }}</div>
+      <div class="company-number">{{ company.number }}</div>
       <div class="company-address">
-        Av. Jose Bonifacio 1111, APT 09, Jardim Flamboyant, Barcelona, São
-        Paulo, 13000-000, Brasil
+        {{ company.address1 }}, {{ company.address2 }}
       </div>
-      <div class="company-phone">Telefone: +55 (41) 9788-0145</div>
-      <div class="company-email">E-mail: israel@terraduarte.com.br</div>
+      <div class="company-address">
+        {{ company.city }}, {{ company.state }}, {{ company.country }},
+        {{ company.zipCode }}
+      </div>
+      <div class="company-email">{{ company.email }}</div>
+      <div class="company-phone">{{ company.phone }}</div>
     </div>
   </div>
 </div>
@@ -32,11 +33,12 @@
   <div class="row">
     <div class="col-6">
       <div class="client-to">BILL TO</div>
-      <div class="client-name">GOODLE INC</div>
-      <div class="client-number">San Franciso Corporate Number C123123123</div>
+      <div class="client-name">{{ client.name }}</div>
+      <div class="client-number">{{ client.number }}</div>
+      <div class="client-address">{{ client.address1 }}</div>
       <div class="client-address">
-        99 Coleridge st, San Francisco, CA<br />
-        Code: CA123123123, USA
+        {{ client.city }}, {{ client.state }}, {{ client.country }},
+        {{ client.zipCode }}
       </div>
     </div>
   </div>
@@ -45,8 +47,8 @@
 <div class="container table">
   <div class="row table-services">
     <div class="description">Description</div>
-    <div class="quantity">Quantity</div>
-    <div class="price">Unit Price</div>
+    <div class="hours">hours</div>
+    <div class="price">Price</div>
     <div class="total">Total</div>
   </div>
   <div
@@ -55,9 +57,9 @@
     [ngClass]="{ 'fade-out': item.removing, 'fade-in': item.adding }"
   >
     <div class="description">{{ item.description }}</div>
-    <div class="quantity">{{ item.quantity }}</div>
-    <div class="price">${{ item.price }} USD</div>
-    <div class="total">${{ (item.price * item.quantity).toFixed(2) }}</div>
+    <div class="hours">{{ item.hours }}</div>
+    <div class="price">${{ item.price }} {{ client.exchange }}</div>
+    <div class="total">${{ (item.price * item.hours).toFixed(2) }}</div>
     <button class="remove-button" (click)="removeItem(item)">X</button>
   </div>
 </div>
@@ -73,12 +75,12 @@
         required
       />
     </div>
-    <div class="quantity">
+    <div class="hours">
       <input
         type="number"
-        [(ngModel)]="item.quantity"
-        name="quantity"
-        #quantity="ngModel"
+        [(ngModel)]="item.hours"
+        name="hours"
+        #hours="ngModel"
         required
       />
     </div>
@@ -101,7 +103,7 @@
   <div class="row balance-due">
     <div class="col-10">Balance Due</div>
     <div class="col">
-      $ {{ subtotal }}
+      ${{ subtotal }} {{ client.exchange }}
       <div class="col words-subtotal">
         ({{ wordsSubtotal }} American Dollars)
       </div>

@@ -1,0 +1,65 @@
+{
+  "user": {
+    "id": "MyInvoice_User_01",
+    "name": "Israel Terra Duarte",
+    "number": "1097454576",
+    "address1": "Rua João Anunziato Filho, 1245",
+    "address2": "Jardim do Sol",
+    "city": "São Luiz",
+    "state": "Maranhão",
+    "country": "Brasil",
+    "phone": "+55 33 986762567",
+    "email": "israeltduarte@hotmail.com",
+    "birthdate": "2023-22-01",
+    "type": "PREMIUM"
+  },
+  "company": {
+    "id": "MyInvoice_Company_01",
+    "name": "Israel Terra Duarte Software Development",
+    "fantasyName": "Isertech Software Consultancy",
+    "number": "70.244.554/0001-88",
+    "address1": "Av. das Araguariúnas, 133, AP24, Mansões Santo Antônio",
+    "address2": "",
+    "city": "Campinas",
+    "state": "São Paulo",
+    "country": "Brasil",
+    "zipCode": "96200-120",
+    "phone": "+55 19 967872344",
+    "email": "israeltduarte@gmail.com"
+  },
+  "client": {
+    "id": "MyInvoice_Client_01",
+    "name": "Papercutep Personalizados INC",
+    "number": "Miami Corporate Number C763899427",
+    "address1": "2601 NW 42nd Ave",
+    "address2": "",
+    "city": "Miami",
+    "state": "Florida",
+    "country": "United States",
+    "zipCode": "CA94110",
+    "contact": "+55 19 996991102",
+    "exchange": "USD"
+  },
+  "items": [
+    {
+      "id": "MyInvoice_Item_01",
+      "user_id": "MyInvoice_User_01",
+      "description": "software development services",
+      "hours": 64,
+      "price": 19,
+      "total": 0,
+      "removing": false,
+      "adding": false
+    },
+    {
+      "id": "MyInvoice_Item_02",
+      "user_id": "MyInvoice_User_01",
+      "description": "software development extra hours",
+      "hours": 12,
+      "price": 22,
+      "total": 0,
+      "removing": false,
+      "adding": false
+    }
+  ]
+}

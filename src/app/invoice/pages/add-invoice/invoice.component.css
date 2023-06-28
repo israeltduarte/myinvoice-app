@@ -22,7 +22,7 @@
   text-align: left;
 }
 
-.quantity {
+.hours {
   width: 12%;
 }
 
@@ -171,10 +171,13 @@
   text-transform: capitalize;
 }
 
+.from-to {
+  margin-bottom: 30px;
+}
+
 .company-name,
 .company-number,
-.client-name,
-.client-number {
+.client-name {
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -193,14 +196,9 @@
   color: gray;
 }
 
-/* .company-address {
+.client-number {
+  font-weight: bold;
 }
-
-.company-phone {
-}
-
-.company-email {
-} */
 
 .client,
 .company {

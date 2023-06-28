@@ -2,17 +2,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { FooterComponent, HeaderComponent } from './shared';
-import { TableComponent } from './features/table/table.component';
+import { InvoiceComponent } from './invoice/pages/add-invoice/invoice.component';
+import { SharedModule } from './shared';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule],
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    TableComponent,
-    FooterComponent,
-  ],
+  imports: [BrowserModule, FormsModule, SharedModule],
+  declarations: [AppComponent, InvoiceComponent],
   providers: [],
   bootstrap: [AppComponent],
 })

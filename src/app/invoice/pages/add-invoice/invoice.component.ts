@@ -1,13 +1,21 @@
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import * as converter from 'number-to-words';
-import { trigger, style, animate, transition } from '@angular/animations';
+import { Client, Company, Invoice } from 'src/app/core/models';
+import {
+  ClientService,
+  CompanyService,
+  InvoiceService,
+} from 'src/app/core/services';
+import data from '../../../../api/data.json';
 
 import { Item } from 'src/app/core/models/item';
 
 @Component({
-  selector: 'app-items-table',
-  templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css'],
+  selector: 'app-invoice',
+  providers: [CompanyService, InvoiceService, ClientService],
+  templateUrl: './invoice.component.html',
+  styleUrls: ['./invoice.component.css'],
   animations: [
     trigger('fadeOut', [
       transition(':leave', [
@@ -17,31 +25,27 @@ import { Item } from 'src/app/core/models/item';
     ]),
   ],
 })
-export class TableComponent {
-  items: Item[] = [
-    {
-      description: 'software development services',
-      quantity: 64,
-      price: 19,
-      total: 0,
-      removing: false,
-      adding: false,
-    },
-    {
-      description: 'software development extra hours',
-      quantity: 12,
-      price: 22,
-      total: 0,
-      removing: false,
-      adding: false,
-    },
-  ];
+export class InvoiceComponent {
+  company!: Company;
+  client!: Client;
+  invoice!: Invoice;
   subtotal: string = '';
   wordsSubtotal: string = '';
-  item: Item = new Item('', 0, 0, 0, false, false);
+  item: Item = new Item('', '', '', 0, 0, 0, false, false);
+  items!: Item[];
   show: boolean = false;
 
+  constructor(
+    // private invoiceService: InvoiceService,
+    private companyService: CompanyService,
+    private clientService: ClientService
+  ) {}
+
   ngOnInit() {
+    this.company = this.companyService.getCompany('MyInvoice_Company_01');
+    this.client = this.clientService.getClient('MyInvoice_Client_01');
+    this.items = data.items;
+    // this.invoiceService.getInvoices('MyInvoice_User_01');
     this.show = this.items.length > 0;
     this.calculateSubTotal();
   }
@@ -63,10 +67,7 @@ export class TableComponent {
 
   calculateSubTotal(): void {
     this.subtotal = this.items
-      .reduce(
-        (accumulator, item) => accumulator + item.quantity * item.price,
-        0
-      )
+      .reduce((accumulator, item) => accumulator + item.hours * item.price, 0)
       .toFixed(2);
     this.wordsSubtotal = converter.toWords(this.subtotal);
   }
@@ -83,6 +84,6 @@ export class TableComponent {
   }
 
   resetItem(): void {
-    this.item = new Item('', 0, 0, 0, false, false);
+    this.item = new Item('', '', '', 0, 0, 0, false, false);
   }
 }

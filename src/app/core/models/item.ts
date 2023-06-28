@@ -1,10 +1,12 @@
 export class Item {
   constructor(
+    public id: string,
+    public user_id: string,
     public description: string,
-    public quantity: number,
+    public hours: number,
     public price: number,
     public total: number,
-    public removing: boolean,
-    public adding: boolean
+    public removing: boolean = false,
+    public adding: boolean = false
   ) {}
 }

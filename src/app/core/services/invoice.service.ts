@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { invoice } from '../models';
+import { Invoice } from '../models';
 
 @Injectable()
 export class InvoiceService {
@@ -10,9 +10,10 @@ export class InvoiceService {
 
   constructor(private http: HttpClient) {}
 
-  getRepos(userId: string): Observable<invoice[]> {
-    return this.http.get<invoice[]>(
-      this.baseURL + 'user/' + userId + '/invoice'
+  addInvoice(invoice: Invoice, userId: string): Observable<Invoice> {
+    return this.http.post<Invoice>(
+      this.baseURL + 'user/' + userId + '/invoice',
+      invoice
     );
   }
 }
