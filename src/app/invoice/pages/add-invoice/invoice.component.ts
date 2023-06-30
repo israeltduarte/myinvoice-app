@@ -31,8 +31,7 @@ export class InvoiceComponent {
   invoice!: Invoice;
   subtotal: string = '';
   wordsSubtotal: string = '';
-  item: Item = new Item('', '', '', 0, 0, 0, false, false);
-  items!: Item[];
+  newItem: Item = new Item('', '', '', 0, 0, 0, false, false);
   show: boolean = false;
 
   constructor(
@@ -42,48 +41,47 @@ export class InvoiceComponent {
   ) {}
 
   ngOnInit() {
-    this.company = data.company;//this.companyService.getCompany('MyInvoice_Company_01');
-    this.client = data.client;//this.clientService.getClient('MyInvoice_Client_01');
-    this.invoice = data.invoice;//this.invoiceService.getInvoice('MyInvoice_User_01');
-    this.items = this.invoice.items;
-    this.show = this.items.length > 0;
+    this.company = data.company; //this.companyService.getCompany('MyInvoice_Company_01');
+    this.client = data.client; //this.clientService.getClient('MyInvoice_Client_01');
+    this.invoice = data.invoice; //this.invoiceService.getInvoice('MyInvoice_User_01');
+    this.show = this.invoice.items.length > 0;
     this.calculateSubTotal();
   }
 
   addNewItem(): void {
-    this.items.push(this.item);
-    this.show = this.items.length > 0;
+    this.invoice.items.push(this.newItem);
+    this.show = this.invoice.items.length > 0;
     this.calculateSubTotal();
     this.resetItem();
 
     setTimeout(() => {
-      const newItemIndex = this.items.length - 1;
-      this.items[newItemIndex].adding = true;
+      const newItemIndex = this.invoice.items.length - 1;
+      this.invoice.items[newItemIndex].adding = true;
       setTimeout(() => {
-        this.items[newItemIndex].adding = false;
+        this.invoice.items[newItemIndex].adding = false;
       }, 300);
     });
   }
 
   calculateSubTotal(): void {
-    this.subtotal = this.items
+    this.subtotal = this.invoice.items
       .reduce((accumulator, item) => accumulator + item.hours * item.price, 0)
       .toFixed(2);
     this.wordsSubtotal = converter.toWords(this.subtotal);
   }
 
   removeItem(item: Item): void {
-    const index = this.items.indexOf(item);
+    const index = this.invoice.items.indexOf(item);
     if (index !== -1) {
-      this.items[index].removing = true;
+      this.invoice.items[index].removing = true;
       setTimeout(() => {
-        this.items.splice(index, 1);
+        this.invoice.items.splice(index, 1);
         this.calculateSubTotal();
       }, 300);
     }
   }
 
   resetItem(): void {
-    this.item = new Item('', '', '', 0, 0, 0, false, false);
+    this.newItem = new Item('', '', '', 0, 0, 0, false, false);
   }
 }

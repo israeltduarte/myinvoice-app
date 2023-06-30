@@ -55,8 +55,8 @@
   </div>
   <div
     class="row table-items"
-    *ngFor="let item of items"
-    [ngClass]="{ 'fade-out': item.removing, 'fade-in': item.adding }"
+    *ngFor="let item of invoice.items"
+    ngClass="{ 'fade-out': item.removing, 'fade-in': item.adding }"
   >
     <div class="description">{{ item.description }}</div>
     <div class="hours">{{ item.hours }}</div>
@@ -71,7 +71,7 @@
     <div class="description">
       <input
         type="text"
-        [(ngModel)]="item.description"
+        [(ngModel)]="newItem.description"
         name="description"
         #description="ngModel"
         required
@@ -80,7 +80,7 @@
     <div class="hours">
       <input
         type="number"
-        [(ngModel)]="item.hours"
+        [(ngModel)]="newItem.hours"
         name="hours"
         #hours="ngModel"
         required
@@ -89,10 +89,11 @@
     <div class="price">
       <input
         type="number"
-        [(ngModel)]="item.price"
+        [(ngModel)]="newItem.price"
         name="price"
         #price="ngModel"
         required
+        ngModel
       />
     </div>
     <div class="total">
