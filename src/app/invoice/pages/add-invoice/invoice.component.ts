@@ -36,16 +36,16 @@ export class InvoiceComponent {
   show: boolean = false;
 
   constructor(
-    // private invoiceService: InvoiceService,
+    private invoiceService: InvoiceService,
     private companyService: CompanyService,
     private clientService: ClientService
   ) {}
 
   ngOnInit() {
-    this.company = this.companyService.getCompany('MyInvoice_Company_01');
-    this.client = this.clientService.getClient('MyInvoice_Client_01');
-    this.items = data.items;
-    // this.invoiceService.getInvoices('MyInvoice_User_01');
+    this.company = data.company;//this.companyService.getCompany('MyInvoice_Company_01');
+    this.client = data.client;//this.clientService.getClient('MyInvoice_Client_01');
+    this.invoice = data.invoice;//this.invoiceService.getInvoice('MyInvoice_User_01');
+    this.items = this.invoice.items;
     this.show = this.items.length > 0;
     this.calculateSubTotal();
   }

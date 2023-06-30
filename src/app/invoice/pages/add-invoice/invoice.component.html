@@ -4,8 +4,10 @@
       <h1 class="invoice-title">INVOICE</h1>
     </div>
     <div class="col-2">
-      <div class="invoice-number">#001</div>
-      <div class="invoice-date">June 22, 2023</div>
+      <div class="invoice-number">
+        #{{ ("0000" + invoice.number).slice(-4) }}
+      </div>
+      <div class="invoice-date">{{ invoice.date }}</div>
     </div>
   </div>
 </div>
