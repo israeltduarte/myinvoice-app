@@ -4,6 +4,10 @@ body {
   width: 1024px;
 }
 
+nav a {
+  margin-right: 10px;
+}
+
 .header,
 .footer {
   background-color: #c72525;

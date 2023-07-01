@@ -67,7 +67,7 @@
 </div>
 
 <div class="container new-item">
-  <form #itemForm="ngForm" (ngSubmit)="addNewItem(); resetItem()">
+  <form #itemForm="ngForm" (ngSubmit)="addNewItem()">
     <div class="description">
       <input
         type="text"
@@ -93,7 +93,6 @@
         name="price"
         #price="ngModel"
         required
-        ngModel
       />
     </div>
     <div class="total">

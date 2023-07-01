@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CompanyModule } from './company';
 import { AboutComponent, HomeComponent } from './home';
-import { InvoiceComponent } from './invoice/pages/add-invoice/invoice.component';
+import { InvoiceModule } from './invoice';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
-  { path: 'invoice', component: InvoiceComponent },
+  { path: 'invoice', loadChildren: () => InvoiceModule },
+  { path: 'company', loadChildren: () => CompanyModule },
 ];
 
 @NgModule({

@@ -1,0 +1,255 @@
+.table-services {
+  margin: auto;
+  border-spacing: 0px;
+  color: white;
+  background-color: #c72525;
+  padding: 7px;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.table-services div,
+.table-items div,
+.new-item div {
+  float: left;
+  padding: 0;
+}
+
+.description {
+  width: 56%;
+  text-align: left;
+}
+
+.hours {
+  width: 12%;
+}
+
+.price,
+.total {
+  width: 16%;
+}
+
+.total div {
+  text-align: right;
+  width: 20%;
+}
+
+.subtotal {
+  text-align: right;
+  font-weight: bold;
+}
+
+.table {
+  margin-bottom: 10px;
+}
+
+.table-items {
+  margin: auto;
+  text-align: center;
+}
+
+.table-items .total {
+  text-align: right;
+}
+
+.table-items div {
+  border: 1px solid gray;
+  padding: 5px;
+}
+
+.new-item {
+  margin-bottom: 10px;
+}
+
+.new-item form {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.new-item input {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: border-color 0.3s;
+}
+
+.new-item input:focus {
+  outline: none;
+  border-color: #92c392;
+}
+
+.new-item button {
+  width: 24px;
+  height: 24px;
+  background-color: #bbebbb;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 50%;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-left: 8px;
+  padding: unset;
+}
+
+.new-item button:hover {
+  background-color: #4cae4c;
+}
+
+.new-item button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(92, 184, 92, 0.5);
+}
+
+.fade-out {
+  animation: fadeOut 300ms ease-out;
+  opacity: 0;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    border: none;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 300ms ease-out;
+  opacity: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.remove-button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f4c8cd;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  margin-left: 70%;
+  margin-top: 6px;
+}
+
+.balance-due {
+  text-align: right;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.words-subtotal {
+  text-transform: capitalize;
+}
+
+.from-to {
+  margin-bottom: 30px;
+}
+
+.company-name,
+.company-number,
+.client-name {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.company-from,
+.client-to {
+  border-bottom: 1px solid gray;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.company-from,
+.client-to,
+.invoice-title {
+  color: gray;
+}
+
+.client-number {
+  font-weight: bold;
+}
+
+.client,
+.company {
+  margin-bottom: 30px;
+}
+
+.remove-button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background-color: #f4c8cd;
+  color: white;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  margin-left: 70%;
+  margin-top: 6px;
+}
+
+.remove-button:hover {
+  background-color: #c82333;
+}
+
+.remove-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.5);
+}
+
+h1 {
+  font-weight: bold;
+}
+
+.invoice {
+  margin-bottom: 60px;
+}
+
+.invoice-number,
+.invoice-date {
+  text-align: right;
+}
+
+.invoice-number {
+  border-bottom: 1px solid gray;
+}
+
+.invoice-date {
+  font-weight: bold;
+}

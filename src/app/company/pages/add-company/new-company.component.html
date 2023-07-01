@@ -1,0 +1,60 @@
+<div class="container new-company">
+  <form #companyForm="ngForm" (ngSubmit)="addNewCompany()" class="form-container">
+
+    <div class="form-group">
+      <label for="name">Company Name</label>
+      <input type="text" name="name" [(ngModel)]="newCompany.name" #price="ngModel" id="name" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="fantasyName">Fantasy Name</label>
+      <input type="text" name="fantasyName" [(ngModel)]="newCompany.fantasyName" #fantasyName="ngModel" id="fantasyName" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="number">Number</label>
+      <input type="text" name="number" [(ngModel)]="newCompany.number" #number="ngModel" id="number" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="address1">Address 1</label>
+      <input type="text" name="address1" [(ngModel)]="newCompany.address1" #address1="ngModel" id="address1" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="address2">Address 2</label>
+      <input type="text" name="address2" [(ngModel)]="newCompany.address2" #address2="ngModel" id="address2" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" name="city" [(ngModel)]="newCompany.city" #city="ngModel" id="city" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <input type="text" name="state" [(ngModel)]="newCompany.state" #state="ngModel" id="state" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" name="country" [(ngModel)]="newCompany.country" #country="ngModel" id="country" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="zipCode">Zip Code</label>
+      <input type="text" name="zipCode" [(ngModel)]="newCompany.zipCode" #zipCode="ngModel" id="zipCode" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <input type="text" name="phone" [(ngModel)]="newCompany.phone" #phone="ngModel" id="phone" class="form-input" />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" name="email" [(ngModel)]="newCompany.email" #email="ngModel" id="email" class="form-input" />
+    </div>
+
+    <div class="form-actions">
+      <button class="button" type="submit">Save</button>

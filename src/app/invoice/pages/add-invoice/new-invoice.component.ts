@@ -1,7 +1,8 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import * as converter from 'number-to-words';
-import { Client, Company, Invoice } from 'src/app/core/models';
+import { Client, Company, Invoice, newEmptyItem } from 'src/app/core/models';
+import { Item } from 'src/app/core/models/item';
 import {
   ClientService,
   CompanyService,
@@ -9,13 +10,11 @@ import {
 } from 'src/app/core/services';
 import data from '../../../../api/data.json';
 
-import { Item } from 'src/app/core/models/item';
-
 @Component({
-  selector: 'app-invoice',
+  selector: 'app-new-invoice',
   providers: [CompanyService, InvoiceService, ClientService],
-  templateUrl: './invoice.component.html',
-  styleUrls: ['./invoice.component.css'],
+  templateUrl: './new-invoice.component.html',
+  styleUrls: ['./new-invoice.component.css'],
   animations: [
     trigger('fadeOut', [
       transition(':leave', [
@@ -25,13 +24,13 @@ import { Item } from 'src/app/core/models/item';
     ]),
   ],
 })
-export class InvoiceComponent {
+export class NewInvoiceComponent {
   company!: Company;
   client!: Client;
   invoice!: Invoice;
   subtotal: string = '';
   wordsSubtotal: string = '';
-  newItem: Item = new Item('', '', '', 0, 0, 0, false, false);
+  newItem: Item = newEmptyItem();
   show: boolean = false;
 
   constructor(
@@ -82,6 +81,6 @@ export class InvoiceComponent {
   }
 
   resetItem(): void {
-    this.newItem = new Item('', '', '', 0, 0, 0, false, false);
+    this.newItem = newEmptyItem();
   }
 }
