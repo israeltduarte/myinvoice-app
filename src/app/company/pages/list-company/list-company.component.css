@@ -1,0 +1,23 @@
+.company-list {
+  margin-top: 20px;
+}
+
+.company-card {
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.company-name {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.company-details {
+  font-size: 16px;
+}
+
+.company-details p {
+  margin-bottom: 5px;
+}

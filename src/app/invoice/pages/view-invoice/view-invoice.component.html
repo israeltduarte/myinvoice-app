@@ -62,46 +62,10 @@
     <div class="hours">{{ item.hours }}</div>
     <div class="price">${{ item.price }} {{ client.exchange }}</div>
     <div class="total">${{ (item.price * item.hours).toFixed(2) }}</div>
-    <button class="remove-button" (click)="removeItem(item)">X</button>
   </div>
 </div>
 
-<div class="new-item">
-  <form #itemForm="ngForm" (ngSubmit)="addNewItem()">
-    <div class="description">
-      <input
-        type="text"
-        [(ngModel)]="newItem.description"
-        name="description"
-        #description="ngModel"
-        required
-      />
-    </div>
-    <div class="hours">
-      <input
-        type="number"
-        [(ngModel)]="newItem.hours"
-        name="hours"
-        #hours="ngModel"
-        required
-      />
-    </div>
-    <div class="price">
-      <input
-        type="number"
-        [(ngModel)]="newItem.price"
-        name="price"
-        #price="ngModel"
-        required
-      />
-    </div>
-    <div class="total">
-      <button class="button" type="submit">✓</button>
-    </div>
-  </form>
-</div>
-
-<div *ngIf="show">
+<div>
   <div class="row balance-due">
     <div class="col-10">Balance Due</div>
     <div class="col">

@@ -1,4 +1,66 @@
 {
+  "invoices": [
+    {
+      "id": "MyInvoice_Invoice_01",
+      "number": 1,
+      "date": "2023-06-23",
+      "companyId": "MyInvoice_Company_01",
+      "clientId": "MyInvoice_Client_01",
+      "isPublished": false,
+      "items": [
+        {
+          "id": "MyInvoice_Item_01",
+          "user_id": "MyInvoice_User_01",
+          "description": "limpeza de cpu",
+          "hours": 12,
+          "price": 22,
+          "total": 0,
+          "removing": false,
+          "adding": false
+        },
+        {
+          "id": "MyInvoice_Item_02",
+          "user_id": "MyInvoice_User_01",
+          "description": "instalação de programas no windows",
+          "hours": 8,
+          "price": 11,
+          "total": 0,
+          "removing": false,
+          "adding": false
+        }
+      ]
+    },
+    {
+      "id": "MyInvoice_Invoice_02",
+      "number": 2,
+      "date": "2021-06-23",
+      "companyId": "MyInvoice_Company_01",
+      "clientId": "MyInvoice_Client_01",
+      "isPublished": false,
+      "items": [
+        {
+          "id": "MyInvoice_Item_03",
+          "user_id": "MyInvoice_User_01",
+          "description": "software development services",
+          "hours": 64,
+          "price": 19,
+          "total": 0,
+          "removing": false,
+          "adding": false
+        },
+        {
+          "id": "MyInvoice_Item_04",
+          "user_id": "MyInvoice_User_01",
+          "description": "software development extra hours",
+          "hours": 12,
+          "price": 22,
+          "total": 0,
+          "removing": false,
+          "adding": false
+        }
+      ]
+    }
+  ],
   "invoice": {
     "id": "MyInvoice_Invoice_01",
     "number": 1,
@@ -44,6 +106,36 @@
     "birthdate": "2023-22-01",
     "type": "PREMIUM"
   },
+  "companies": [
+    {
+      "id": "MyInvoice_Company_01",
+      "name": "Israel Terra Duarte Software Development",
+      "fantasyName": "Isertech Software Consultancy",
+      "number": "70.244.554/0001-88",
+      "address1": "Av. das Araguariúnas, 133, AP24, Mansões Santo Antônio",
+      "address2": "",
+      "city": "Campinas",
+      "state": "São Paulo",
+      "country": "Brasil",
+      "zipCode": "96200-120",
+      "phone": "+55 19 967872344",
+      "email": "israeltduarte@gmail.com"
+    },
+    {
+      "id": "MyInvoice_Company_02",
+      "name": "Gabrielle Almeida Software Engineering",
+      "fantasyName": "Gaga Services",
+      "number": "93.733.367/0003-44",
+      "address1": "Rua das Amoreiras, 11, AP89",
+      "address2": "Jardim dos Anjos",
+      "city": "Rio Claro",
+      "state": "São Paulo",
+      "country": "Brasil",
+      "zipCode": "15688-130",
+      "phone": "+55 19 912578909",
+      "email": "gabriellealmeida@gmail.com"
+    }
+  ],
   "company": {
     "id": "MyInvoice_Company_01",
     "name": "Israel Terra Duarte Software Development",

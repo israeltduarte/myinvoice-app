@@ -8,8 +8,16 @@ nav a {
   margin-right: 10px;
 }
 
-.header,
-.footer {
+h1 {
+  font-weight: bold;
+}
+
+a {
+  text-decoration: none;
+}
+
+.top-line,
+.bottom-line {
   background-color: #c72525;
   margin-top: 30px;
   margin-bottom: 30px;

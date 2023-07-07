@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NewCompanyComponent } from './pages';
+import { ListCompanyComponent, NewCompanyComponent } from './pages';
 import { CompanyComponent } from './pages/company.component';
 
 const routes: Routes = [
@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'add',
     component: NewCompanyComponent,
+  },
+  {
+    path: 'list',
+    component: ListCompanyComponent,
   },
 ];
 

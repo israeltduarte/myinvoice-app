@@ -15,7 +15,7 @@ export class CompanyService {
     );
   }
 
-  getCompanys(userId: string): Observable<Company[]> {
+  getAllCompanies(userId: string): Observable<Company[]> {
     return this.http.get<Company[]>(
       this.baseURL + '/user' + userId + '/company'
     );

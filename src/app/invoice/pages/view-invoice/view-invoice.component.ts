@@ -16,10 +16,10 @@ import {
 import data from '../../../../api/data.json';
 
 @Component({
-  selector: 'app-new-invoice',
+  selector: 'app-view-invoice',
   providers: [CompanyService, InvoiceService, ClientService],
-  templateUrl: './new-invoice.component.html',
-  styleUrls: ['./new-invoice.component.css'],
+  templateUrl: './view-invoice.component.html',
+  styleUrls: ['./view-invoice.component.css'],
   animations: [
     trigger('fadeOut', [
       transition(':leave', [
@@ -29,7 +29,7 @@ import data from '../../../../api/data.json';
     ]),
   ],
 })
-export class NewInvoiceComponent {
+export class ViewInvoiceComponent {
   company!: Company;
   client!: Client;
   invoice!: Invoice;
