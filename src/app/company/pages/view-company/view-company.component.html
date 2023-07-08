@@ -1,0 +1,30 @@
+<div class="company-list">
+  <h2>View Company</h2>
+
+  <div class="company-select">
+    <label for="companySelect">Select Company:</label><br>
+    <select id="companySelect" [(ngModel)]="company.id" (change)="loadCompany(company.id)">
+      <option *ngFor="let company of companies" [value]="company.id">{{ company.name }}</option>
+    </select>
+  </div>
+
+  <div class="company-card">
+    <div class="company-info">
+      <h3 class="company-name">{{ company.name }}</h3>
+      <div class="company-details">
+        <p><strong>Fantasy Name:</strong> {{ company.fantasyName }}</p>
+        <p><strong>Number:</strong> {{ company.number }}</p>
+        <p>
+          <strong>Address:</strong> {{ company.address1 }},
+          {{ company.address2 }}
+        </p>
+        <p><strong>City:</strong> {{ company.city }}</p>
+        <p><strong>State:</strong> {{ company.state }}</p>
+        <p><strong>Country:</strong> {{ company.country }}</p>
+        <p><strong>Zip Code:</strong> {{ company.zipCode }}</p>
+        <p><strong>Phone:</strong> {{ company.phone }}</p>
+        <p><strong>Email:</strong> {{ company.email }}</p>
+      </div>
+    </div>
+  </div>
+</div>
