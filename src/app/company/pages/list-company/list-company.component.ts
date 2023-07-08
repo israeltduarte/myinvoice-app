@@ -12,6 +12,7 @@ import data from '../../../../api/data.json';
 export class ListCompanyComponent {
   user!: User;
   companies!: Company[];
+  searchText: string = '';
 
   constructor(private companyService: CompanyService) {}
 
@@ -22,5 +23,25 @@ export class ListCompanyComponent {
 
   getAllCompanies(userId: string) {
     return data.companies;
+  }
+
+  get filteredCompanies(): Company[] {
+    return this.companies.filter((company: Company) => {
+      // Filter logic based on attributes
+      const searchTerm = this.searchText.toLowerCase();
+      return (
+        company.name.toLowerCase().includes(searchTerm) ||
+        company.fantasyName.toLowerCase().includes(searchTerm) ||
+        company.number.toLowerCase().includes(searchTerm) ||
+        company.address1.toLowerCase().includes(searchTerm) ||
+        company.address2.toLowerCase().includes(searchTerm) ||
+        company.city.toLowerCase().includes(searchTerm) ||
+        company.state.toLowerCase().includes(searchTerm) ||
+        company.country.toLowerCase().includes(searchTerm) ||
+        company.zipCode.toLowerCase().includes(searchTerm) ||
+        company.phone.toLowerCase().includes(searchTerm) ||
+        company.email.toLowerCase().includes(searchTerm)
+      );
+    });
   }
 }

@@ -1,9 +1,11 @@
 <div class="company-list">
   <h2>List of Companies</h2>
 
-  <div *ngIf="companies.length === 0">No companies found.</div>
+  <input type="text" placeholder="Search..." [(ngModel)]="searchText" />
 
-  <div *ngFor="let company of companies" class="company-card">
+  <div *ngIf="filteredCompanies.length === 0">No companies found.</div>
+
+  <div *ngFor="let company of filteredCompanies" class="company-card">
     <div class="company-info">
       <h3 class="company-name">{{ company.name }}</h3>
       <div class="company-details">
