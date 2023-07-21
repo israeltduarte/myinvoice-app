@@ -8,22 +8,10 @@ import {
 import { CompanyComponent } from './pages/company.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: CompanyComponent,
-  },
-  {
-    path: 'add',
-    component: NewCompanyComponent,
-  },
-  {
-    path: 'list',
-    component: ListCompanyComponent,
-  },
-  {
-    path: 'view',
-    component: ViewCompanyComponent,
-  },
+  { path: '', component: CompanyComponent },
+  { path: 'add', component: NewCompanyComponent },
+  { path: 'list', component: ListCompanyComponent },
+  { path: 'view', component: ViewCompanyComponent }
 ];
 
 @NgModule({
