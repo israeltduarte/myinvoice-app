@@ -1,3 +1,4 @@
+import { Client } from './client';
 import { Company } from './company';
 import { Invoice } from './invoice';
 import { Item } from './item';
@@ -12,4 +13,8 @@ export function newEmptyItem(): Item {
 
 export function newEmptyInvoice(): Invoice {
   return new Invoice('', 0, '', '', '', 0, '', false, []);
+}
+
+export function newEmptyClient(): Client {
+  return new Client('', '', '', '', '', '', '', '', '', '', '', '');
 }

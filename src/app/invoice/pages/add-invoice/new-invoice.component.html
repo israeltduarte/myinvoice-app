@@ -4,11 +4,35 @@
       <h1 class="invoice-title">INVOICE</h1>
     </div>
     <div class="col-2">
-      <div class="invoice-number">
+      <!-- <div class="invoice-number">
         #{{ ("0000" + invoice.number).slice(-4) }}
-      </div>
-      <div class="invoice-date">{{ invoice.date }}</div>
+      </div> -->
+      <!-- <div class="invoice-date">{{ invoice.date }}</div> -->
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <label for="companyFilter">Select Company:</label>
+    <select
+      class="form-control"
+      id="companyFilter"
+      [(ngModel)]="selectedCompany"
+    >
+      <option *ngFor="let company of companies" [ngValue]="company">
+        {{ company.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="col-md-6">
+    <label for="clientFilter">Select Client:</label>
+    <select class="form-control" id="clientFilter" [(ngModel)]="selectedClient">
+      <option *ngFor="let client of clients" [ngValue]="client">
+        {{ client.name }}
+      </option>
+    </select>
   </div>
 </div>
 
@@ -16,17 +40,18 @@
   <div class="row">
     <div class="col-6">
       <div class="company-from">FROM</div>
-      <div class="company-name">{{ company.name }}</div>
-      <div class="company-number">{{ company.number }}</div>
+      <div class="company-name">{{ selectedCompany.name }}</div>
+      <div class="company-number">{{ selectedCompany.number }}</div>
       <div class="company-address">
-        {{ company.address1 }}, {{ company.address2 }}
+        {{ selectedCompany.address1 }}, {{ selectedCompany.address2 }}
       </div>
       <div class="company-address">
-        {{ company.city }}, {{ company.state }}, {{ company.country }},
-        {{ company.zipCode }}
+        {{ selectedCompany.city }}, {{ selectedCompany.state }},
+        {{ selectedCompany.country }},
+        {{ selectedCompany.zipCode }}
       </div>
-      <div class="company-email">{{ company.email }}</div>
-      <div class="company-phone">{{ company.phone }}</div>
+      <div class="company-email">{{ selectedCompany.email }}</div>
+      <div class="company-phone">{{ selectedCompany.phone }}</div>
     </div>
   </div>
 </div>
@@ -35,12 +60,13 @@
   <div class="row">
     <div class="col-6">
       <div class="client-to">BILL TO</div>
-      <div class="client-name">{{ client.name }}</div>
-      <div class="client-number">{{ client.number }}</div>
-      <div class="client-address">{{ client.address1 }}</div>
+      <div class="client-name">{{ selectedClient.name }}</div>
+      <div class="client-number">{{ selectedClient.number }}</div>
+      <div class="client-address">{{ selectedClient.address1 }}</div>
       <div class="client-address">
-        {{ client.city }}, {{ client.state }}, {{ client.country }},
-        {{ client.zipCode }}
+        {{ selectedClient.city }}, {{ selectedClient.state }},
+        {{ selectedClient.country }},
+        {{ selectedClient.zipCode }}
       </div>
     </div>
   </div>
@@ -60,7 +86,7 @@
   >
     <div class="description">{{ item.description }}</div>
     <div class="hours">{{ item.hours }}</div>
-    <div class="price">${{ item.price }} {{ client.exchange }}</div>
+    <div class="price">${{ item.price }} {{ selectedClient.exchange }}</div>
     <div class="total">${{ (item.price * item.hours).toFixed(2) }}</div>
     <button class="remove-button" (click)="removeItem(item)">X</button>
   </div>
@@ -105,7 +131,7 @@
   <div class="row balance-due">
     <div class="col-10">Balance Due</div>
     <div class="col">
-      ${{ subtotal }} {{ client.exchange }}
+      ${{ subtotal }} {{ selectedClient.exchange }}
       <div class="col words-subtotal">
         ({{ wordsSubtotal }} American Dollars)
       </div>

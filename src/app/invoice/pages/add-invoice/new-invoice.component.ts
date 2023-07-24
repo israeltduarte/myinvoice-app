@@ -6,6 +6,7 @@ import {
   Company,
   Invoice,
   Item,
+  newEmptyInvoice,
   newEmptyItem,
 } from 'src/app/core/models';
 import {
@@ -30,9 +31,13 @@ import data from '../../../../api/data.json';
   ],
 })
 export class NewInvoiceComponent {
-  company!: Company;
-  client!: Client;
-  invoice!: Invoice;
+  invoice: Invoice = newEmptyInvoice();
+  companies!: Company[];
+  clients!: Client[];
+
+  selectedCompany!: Company;
+  selectedClient!: Client;
+
   subtotal: string = '';
   wordsSubtotal: string = '';
   newItem: Item = newEmptyItem();
@@ -45,11 +50,10 @@ export class NewInvoiceComponent {
   ) {}
 
   ngOnInit() {
-    this.company = data.company; //this.companyService.getCompany('MyInvoice_Company_01');
-    this.client = data.client; //this.clientService.getClient('MyInvoice_Client_01');
-    this.invoice = data.invoice; //this.invoiceService.getInvoice('MyInvoice_User_01');
-    this.show = this.invoice.items.length > 0;
-    this.calculateSubTotal();
+    this.companies = data.companies;
+    this.clients = data.clients;
+    this.selectedCompany = this.companies[0]; // Select the first company by default
+    this.selectedClient = this.clients[0]; // Select the first client by default
   }
 
   addNewItem(): void {
@@ -88,4 +92,7 @@ export class NewInvoiceComponent {
   resetItem(): void {
     this.newItem = newEmptyItem();
   }
+
+  updateClientData() {}
+  updateCompanyData() {}
 }
