@@ -6,6 +6,8 @@
       "date": "2023-06-23",
       "companyId": "MyInvoice_Company_01",
       "clientId": "MyInvoice_Client_01",
+      "total": 352,
+      "currency": "USD",
       "isPublished": false,
       "items": [
         {
@@ -14,7 +16,7 @@
           "description": "limpeza de cpu",
           "hours": 12,
           "price": 22,
-          "total": 0,
+          "total": 264,
           "removing": false,
           "adding": false
         },
@@ -24,7 +26,7 @@
           "description": "instalação de programas no windows",
           "hours": 8,
           "price": 11,
-          "total": 0,
+          "total": 88,
           "removing": false,
           "adding": false
         }
@@ -34,27 +36,61 @@
       "id": "MyInvoice_Invoice_02",
       "number": 2,
       "date": "2021-06-23",
-      "companyId": "MyInvoice_Company_01",
+      "companyId": "MyInvoice_Company_02",
       "clientId": "MyInvoice_Client_01",
+      "total": 1480,
+      "currency": "USD",
       "isPublished": false,
       "items": [
         {
           "id": "MyInvoice_Item_03",
-          "user_id": "MyInvoice_User_01",
+          "user_id": "MyInvoice_User_02",
           "description": "software development services",
           "hours": 64,
           "price": 19,
-          "total": 0,
+          "total": 1216,
           "removing": false,
           "adding": false
         },
         {
           "id": "MyInvoice_Item_04",
-          "user_id": "MyInvoice_User_01",
+          "user_id": "MyInvoice_User_02",
           "description": "software development extra hours",
           "hours": 12,
           "price": 22,
-          "total": 0,
+          "total": 264,
+          "removing": false,
+          "adding": false
+        }
+      ]
+    },
+    {
+      "id": "MyInvoice_Invoice_01",
+      "number": 3,
+      "date": "2021-11-23",
+      "companyId": "MyInvoice_Company_01",
+      "clientId": "MyInvoice_Client_03",
+      "total": 1640,
+      "currency": "USD",
+      "isPublished": false,
+      "items": [
+        {
+          "id": "MyInvoice_Item_05",
+          "user_id": "MyInvoice_User_01",
+          "description": "marketing service",
+          "hours": 22,
+          "price": 44,
+          "total": 968,
+          "removing": false,
+          "adding": false
+        },
+        {
+          "id": "MyInvoice_Item_06",
+          "user_id": "MyInvoice_User_01",
+          "description": "digital marketing for instagram",
+          "hours": 56,
+          "price": 12,
+          "total": 672,
           "removing": false,
           "adding": false
         }
@@ -67,6 +103,8 @@
     "date": "2023-06-23",
     "companyId": "MyInvoice_Company_01",
     "clientId": "MyInvoice_Client_01",
+    "total": 1480,
+    "currency": "USD",
     "isPublished": false,
     "items": [
       {
@@ -75,7 +113,7 @@
         "description": "software development services",
         "hours": 64,
         "price": 19,
-        "total": 0,
+        "total": 1216,
         "removing": false,
         "adding": false
       },
@@ -85,7 +123,7 @@
         "description": "software development extra hours",
         "hours": 12,
         "price": 22,
-        "total": 0,
+        "total": 264,
         "removing": false,
         "adding": false
       }
@@ -163,5 +201,49 @@
     "zipCode": "CA94110",
     "contact": "+55 19 996991102",
     "exchange": "USD"
-  }
+  },
+  "clients": [
+    {
+      "id": "MyInvoice_Client_01",
+      "userId": "MyInvoice_User_01",
+      "name": "Client 1",
+      "number": "C1111111",
+      "address1": "2601 NW 42nd Ave",
+      "address2": "",
+      "city": "Miami",
+      "state": "Florida",
+      "country": "United States",
+      "zipCode": "CA94110",
+      "contact": "+55 19 996991102",
+      "exchange": "USD"
+    },
+    {
+      "id": "MyInvoice_Client_02",
+      "userId": "MyInvoice_User_02",
+      "name": "Client 2",
+      "number": "C2222222",
+      "address1": "2601 NW 42nd Ave",
+      "address2": "",
+      "city": "Curitiba",
+      "state": "Paraná",
+      "country": "United States",
+      "zipCode": "CA94222",
+      "contact": "+55 19 996991102",
+      "exchange": "USD"
+    },
+    {
+      "id": "MyInvoice_Client_03",
+      "userId": "MyInvoice_User_01",
+      "name": "Client 3",
+      "number": "C33333333",
+      "address1": "2601 NW 42nd Ave",
+      "address2": "",
+      "city": "Broksfield",
+      "state": "Mississipi",
+      "country": "United States",
+      "zipCode": "CA94333",
+      "contact": "+55 19 996991102",
+      "exchange": "BRL"
+    }
+  ]
 }

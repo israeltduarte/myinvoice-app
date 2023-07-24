@@ -1,0 +1,56 @@
+<div class="container invoice-list">
+  <h2>List of Invoices</h2>
+
+  <div class="row">
+    <div class="col-md-6">
+      <label for="companyFilter">Filter by Company:</label>
+      <select class="form-control" id="companyFilter" [(ngModel)]="selectedCompany" (ngModelChange)="applyFilters()">
+        <option value="" selected>All Companies</option>
+        <option *ngFor="let company of companies" [value]="company.id">{{ company.name }}</option>
+      </select>
+    </div>
+    <div class="col-md-6">
+      <label for="clientFilter">Filter by Client:</label>
+      <select class="form-control" id="clientFilter" [(ngModel)]="selectedClient" (ngModelChange)="applyFilters()">
+        <option value="" selected>All Clients</option>
+        <option *ngFor="let client of clients" [value]="client.id">{{ client.name }}</option>
+      </select>
+    </div>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Number</th>
+        <th>Date</th>
+        <th>Company ID</th>
+        <th>Client ID</th>
+        <th>Total</th>
+        <th>Published</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of filteredInvoices">
+        <td>
+          <a [routerLink]="['/invoice/view', invoice.id]">{{ invoice.id }}</a>
+        </td>
+        <td>{{ invoice.number }}</td>
+        <td>{{ invoice.date }}</td>
+        <td>{{ invoice.companyId }}</td>
+        <td>{{ invoice.clientId }}</td>
+        <td>{{ invoice.total + " " + invoice.currency }}</td>
+        <td>{{ invoice.isPublished ? "Yes" : "No" }}</td>
+        <td>
+          <button class="btn btn-primary" (click)="editInvoice(invoice)">
+            Edit
+          </button>
+          <button class="btn btn-danger" (click)="removeInvoice(invoice)">
+            Remove
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

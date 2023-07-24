@@ -9,33 +9,25 @@ export class InvoiceService {
 
   constructor(private http: HttpClient) {}
 
+  getAllInvoices(userId: string) {
+    return this.http.get<Invoice>(this.baseURL + '/invoice');
+  }
+
   addInvoice(userId: string, invoice: Invoice): Observable<Invoice> {
-    return this.http.post<Invoice>(
-      this.baseURL + 'user/' + userId + '/invoice',
-      invoice
-    );
+    return this.http.post<Invoice>(this.baseURL + '/invoice/', invoice);
   }
 
   getInvoice(userId: string, invoiceId: string): Observable<Invoice> {
-    return this.http.get<Invoice>(
-      this.baseURL + '/user' + userId + '/invoice' + invoiceId
-    );
+    return this.http.get<Invoice>(this.baseURL + '/invoice/' + invoiceId);
   }
 
-  updateInvoice(
-    userId: string,
-    invoiceId: string,
-    invoice: Invoice
-  ): Observable<Invoice> {
+  updateInvoice(userId: string, invoiceId: string, invoice: Invoice): Observable<Invoice> {
     return this.http.put<Invoice>(
-      this.baseURL + '/user' + userId + '/invoice' + invoiceId,
-      invoice
+      this.baseURL + '/invoice/' + invoiceId, invoice
     );
   }
 
   deleteInvoice(userId: string, invoiceId: string): void {
-    this.http.delete<Invoice>(
-      this.baseURL + 'user/' + userId + '/invoice' + invoiceId
-    );
+    this.http.delete<Invoice>(this.baseURL + '/invoice/' + invoiceId);
   }
 }

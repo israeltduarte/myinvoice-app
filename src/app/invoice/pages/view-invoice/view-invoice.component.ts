@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as converter from 'number-to-words';
 import {
   Client,
@@ -29,7 +30,7 @@ import data from '../../../../api/data.json';
     ]),
   ],
 })
-export class ViewInvoiceComponent {
+export class ViewInvoiceComponent implements OnInit {
   company!: Company;
   client!: Client;
   invoice!: Invoice;
@@ -37,17 +38,22 @@ export class ViewInvoiceComponent {
   wordsSubtotal: string = '';
   newItem: Item = newEmptyItem();
   show: boolean = false;
+  invoiceId: string | null = null;
 
   constructor(
     private invoiceService: InvoiceService,
     private companyService: CompanyService,
-    private clientService: ClientService
+    private clientService: ClientService,
+    private route: ActivatedRoute
   ) {}
 
-  ngOnInit() {
-    this.company = data.company; //this.companyService.getCompany('MyInvoice_Company_01');
-    this.client = data.client; //this.clientService.getClient('MyInvoice_Client_01');
-    this.invoice = data.invoice; //this.invoiceService.getInvoice('MyInvoice_User_01');
+  ngOnInit(): void {
+    this.route.paramMap.subscribe((params) => {
+      this.invoiceId = params.get('id');
+      this.company = data.company; //this.companyService.getCompany('MyInvoice_Company_01');
+      this.client = data.client; //this.clientService.getClient('MyInvoice_Client_01');
+      this.invoice = data.invoice; //this.invoiceService.getInvoice('MyInvoice_User_01');
+    });
     this.show = this.invoice.items.length > 0;
     this.calculateSubTotal();
   }

@@ -7,7 +7,9 @@ export class Invoice {
     public date: string,
     public companyId: string,
     public clientId: string,
-    public items: Item[],
-    public isPublished: boolean
+    public total: number,
+    public currency: string,
+    public isPublished: boolean,
+    public items: Item[]
   ) {}
 }
