@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Company, User, newEmptyCompany } from 'src/app/core/models';
+import { Component } from '@angular/core';
+import { Company, User } from 'src/app/core/models';
 import { CompanyService } from 'src/app/core/services';
 import data from '../../../../api/data.json';
 
