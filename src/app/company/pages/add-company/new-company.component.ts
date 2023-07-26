@@ -17,7 +17,9 @@ export class NewCompanyComponent {
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.newCompany = data.company; //this.companyService.getCompany('MyInvoice_Company_01');
+    this.newCompany = data.company;
+    data.companies.push(this.newCompany);
+    // this.companyService.getCompany('MyInvoice_Company_01');
   }
 
   addNewCompany(): void {

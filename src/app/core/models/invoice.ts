@@ -4,7 +4,7 @@ export class Invoice {
   constructor(
     public id: string,
     public number: number,
-    public date: string,
+    public date: number,
     public companyId: string,
     public clientId: string,
     public total: number,

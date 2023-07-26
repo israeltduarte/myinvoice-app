@@ -4,10 +4,10 @@
       <h1 class="invoice-title">INVOICE</h1>
     </div>
     <div class="col-2">
-      <!-- <div class="invoice-number">
+      <div class="invoice-number">
         #{{ ("0000" + invoice.number).slice(-4) }}
-      </div> -->
-      <!-- <div class="invoice-date">{{ invoice.date }}</div> -->
+      </div>
+      <div class="invoice-date">{{ invoice.date | date : "yyyy/MM/dd" }}</div>
     </div>
   </div>
 </div>
@@ -127,7 +127,7 @@
   </form>
 </div>
 
-<div *ngIf="show">
+<div *ngIf="showBalance">
   <div class="row balance-due">
     <div class="col-10">Balance Due</div>
     <div class="col">
@@ -136,5 +136,11 @@
         ({{ wordsSubtotal }} American Dollars)
       </div>
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 text-center">
+    <button class="btn btn-primary" (click)="saveInvoice()">Save Invoice</button>
   </div>
 </div>

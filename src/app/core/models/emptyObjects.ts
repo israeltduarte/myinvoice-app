@@ -12,7 +12,7 @@ export function newEmptyItem(): Item {
 }
 
 export function newEmptyInvoice(): Invoice {
-  return new Invoice('', 0, '', '', '', 0, '', false, []);
+  return new Invoice('', 0, Date.now(), '', '', 0, '', false, []);
 }
 
 export function newEmptyClient(): Client {

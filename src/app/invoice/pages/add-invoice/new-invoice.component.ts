@@ -41,7 +41,7 @@ export class NewInvoiceComponent {
   subtotal: string = '';
   wordsSubtotal: string = '';
   newItem: Item = newEmptyItem();
-  show: boolean = false;
+  showBalance: boolean = false;
 
   constructor(
     private invoiceService: InvoiceService,
@@ -52,13 +52,25 @@ export class NewInvoiceComponent {
   ngOnInit() {
     this.companies = data.companies;
     this.clients = data.clients;
-    this.selectedCompany = this.companies[0]; // Select the first company by default
-    this.selectedClient = this.clients[0]; // Select the first client by default
+    this.selectedCompany = this.companies[0];
+    this.selectedClient = this.clients[0];
+
+    this.invoice.number = this.invoiceService.getNextInvoiceNumber() + 1;
+
+    // this.invoiceService.getNextInvoiceNumber().subscribe(
+    //   (nextNumber: number) => {
+    //     console.log(nextNumber);
+    //     this.invoice.number = nextNumber;
+    //   },
+    //   (error: any) => {
+    //     console.error('Error fetching next invoice number:', error);
+    //   }
+    // );
   }
 
   addNewItem(): void {
     this.invoice.items.push(this.newItem);
-    this.show = this.invoice.items.length > 0;
+    this.showBalance = this.invoice.items.length > 0;
     this.calculateSubTotal();
     this.resetItem();
 
@@ -93,6 +105,30 @@ export class NewInvoiceComponent {
     this.newItem = newEmptyItem();
   }
 
-  updateClientData() {}
-  updateCompanyData() {}
+  saveInvoice(): void {
+    const newInvoice: Invoice = {
+      ...this.invoice,
+      id: new Date().getTime().toString(),
+      date: new Date(this.invoice.date).getTime(),
+    };
+
+    const savedInvoice = this.invoiceService
+      .addInvoice('userId', newInvoice)
+      .subscribe(
+        (response) => {
+          console.log('Invoice saved successfully:', response);
+          this.invoice.id = response.id;
+          data.invoices.push(newInvoice);
+        },
+        (error) => {
+          console.error('Error saving invoice:', error);
+        }
+      );
+
+    this.invoice = newEmptyInvoice();
+    this.newItem = newEmptyItem();
+    this.showBalance = false;
+    this.subtotal = '';
+    this.wordsSubtotal = '';
+  }
 }

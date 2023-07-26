@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Invoice } from '../models';
 
 @Injectable()
@@ -21,13 +22,27 @@ export class InvoiceService {
     return this.http.get<Invoice>(this.baseURL + '/invoice/' + invoiceId);
   }
 
-  updateInvoice(userId: string, invoiceId: string, invoice: Invoice): Observable<Invoice> {
+  updateInvoice(
+    userId: string,
+    invoiceId: string,
+    invoice: Invoice
+  ): Observable<Invoice> {
     return this.http.put<Invoice>(
-      this.baseURL + '/invoice/' + invoiceId, invoice
+      this.baseURL + '/invoice/' + invoiceId,
+      invoice
     );
   }
 
   deleteInvoice(userId: string, invoiceId: string): void {
     this.http.delete<Invoice>(this.baseURL + '/invoice/' + invoiceId);
+  }
+
+  getNextInvoiceNumber(): number {
+    // return this.http.get<number>(this.baseURL + '/invoice/number').pipe(
+    //   map((response: number) => {
+    //     return 10;
+    //   })
+    // );
+    return 10;
   }
 }
