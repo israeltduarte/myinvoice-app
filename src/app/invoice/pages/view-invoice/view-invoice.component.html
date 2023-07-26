@@ -1,16 +1,34 @@
 <app-invoice></app-invoice>
 
+<!-- <h2>View Invoice</h2> -->
+
 <div class="invoice">
   <div class="row">
     <div class="col-10">
       <h1 class="invoice-title">INVOICE</h1>
     </div>
     <div class="col-2">
-      <div class="invoice-number">
+      <!-- <div class="invoice-number">
         #{{ ("0000" + invoice.number).slice(-4) }}
       </div>
-      <div class="invoice-date">{{ invoice.date }}</div>
+      <div class="invoice-date">{{ invoice.date }}</div> -->
     </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-10">
+    <label for="invoiceSelect">Select Invoice:</label><br />
+    <select
+      id="invoiceSelect"
+      class="form-control"
+      [(ngModel)]="selectedInvoice"
+      (ngModelChange)="loadCompanyAndClient()"
+    >
+      <option *ngFor="let invoice of invoices" [ngValue]="invoice">
+        {{ invoice.id }}
+      </option>
+    </select>
   </div>
 </div>
 
@@ -57,7 +75,7 @@
   </div>
   <div
     class="row table-items"
-    *ngFor="let item of invoice.items"
+    *ngFor="let item of selectedInvoice.items"
     ngClass="{ 'fade-out': item.removing, 'fade-in': item.adding }"
   >
     <div class="description">{{ item.description }}</div>

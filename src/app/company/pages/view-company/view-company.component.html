@@ -1,11 +1,15 @@
+<app-invoice></app-invoice>
+
+<h2>View Company</h2>
+
 <div class="company-list">
-  <app-invoice></app-invoice>
-
-  <h2>View Company</h2>
-
   <div class="company-select">
     <label for="companySelect">Select Company:</label><br />
-    <select id="companySelect" [(ngModel)]="selectedCompany">
+    <select
+      id="companySelect"
+      class="form-control"
+      [(ngModel)]="selectedCompany"
+    >
       <option *ngFor="let company of companies" [ngValue]="company">
         {{ company.name }}
       </option>

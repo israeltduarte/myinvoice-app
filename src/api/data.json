@@ -37,7 +37,7 @@
       "number": 2,
       "date": 1690226218405,
       "companyId": "MyInvoice_Company_02",
-      "clientId": "MyInvoice_Client_01",
+      "clientId": "MyInvoice_Client_02",
       "total": 1480,
       "currency": "USD",
       "isPublished": false,
@@ -65,7 +65,7 @@
       ]
     },
     {
-      "id": "MyInvoice_Invoice_01",
+      "id": "MyInvoice_Invoice_03",
       "number": 3,
       "date": 1690222318405,
       "companyId": "MyInvoice_Company_01",

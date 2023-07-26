@@ -1,21 +1,35 @@
 <app-invoice></app-invoice>
 
-<div class="container invoice-list">
-  <h2>List of Invoices</h2>
+<h2>List of Invoices</h2>
 
+<div class="invoice">
   <div class="row">
     <div class="col-md-6">
       <label for="companyFilter">Filter by Company:</label>
-      <select class="form-control" id="companyFilter" [(ngModel)]="selectedCompany" (ngModelChange)="applyFilters()">
+      <select
+        class="form-control"
+        id="companyFilter"
+        [(ngModel)]="selectedCompany"
+        (ngModelChange)="applyFilters()"
+      >
         <option value="" selected>All Companies</option>
-        <option *ngFor="let company of companies" [value]="company.id">{{ company.name }}</option>
+        <option *ngFor="let company of companies" [ngValue]="company.id">
+          {{ company.name }}
+        </option>
       </select>
     </div>
     <div class="col-md-6">
       <label for="clientFilter">Filter by Client:</label>
-      <select class="form-control" id="clientFilter" [(ngModel)]="selectedClient" (ngModelChange)="applyFilters()">
+      <select
+        class="form-control"
+        id="clientFilter"
+        [(ngModel)]="selectedClient"
+        (ngModelChange)="applyFilters()"
+      >
         <option value="" selected>All Clients</option>
-        <option *ngFor="let client of clients" [value]="client.id">{{ client.name }}</option>
+        <option *ngFor="let client of clients" [ngValue]="client.id">
+          {{ client.name }}
+        </option>
       </select>
     </div>
   </div>

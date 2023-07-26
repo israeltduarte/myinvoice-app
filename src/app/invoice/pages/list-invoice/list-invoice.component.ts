@@ -1,5 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Client, Company, Invoice } from 'src/app/core/models';
 import {
   ClientService,
@@ -7,7 +8,6 @@ import {
   InvoiceService,
 } from 'src/app/core/services';
 import data from '../../../../api/data.json';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-invoice',

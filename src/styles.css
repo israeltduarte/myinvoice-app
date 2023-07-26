@@ -16,6 +16,10 @@ a {
   text-decoration: none;
 }
 
+.invoice {
+  margin-bottom: 20px;
+}
+
 .top-line,
 .bottom-line {
   background-color: #c72525;

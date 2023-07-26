@@ -237,10 +237,6 @@ h1 {
   font-weight: bold;
 }
 
-.invoice {
-  margin-bottom: 60px;
-}
-
 .invoice-number,
 .invoice-date {
   text-align: right;

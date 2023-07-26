@@ -2,13 +2,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as converter from 'number-to-words';
-import {
-  Client,
-  Company,
-  Invoice,
-  Item,
-  newEmptyItem,
-} from 'src/app/core/models';
+import { Invoice, Item } from 'src/app/core/models';
 import {
   ClientService,
   CompanyService,
@@ -31,13 +25,14 @@ import data from '../../../../api/data.json';
   ],
 })
 export class ViewInvoiceComponent implements OnInit {
-  company!: Company;
-  client!: Client;
-  invoice!: Invoice;
+  company: any = null;
+  client: any = null;
+  invoices!: Invoice[];
+
+  selectedInvoice: any = null;
   subtotal: string = '';
   wordsSubtotal: string = '';
-  newItem: Item = newEmptyItem();
-  show: boolean = false;
+
   invoiceId: string | null = null;
 
   constructor(
@@ -48,50 +43,41 @@ export class ViewInvoiceComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.invoices = data.invoices;
     this.route.paramMap.subscribe((params) => {
       this.invoiceId = params.get('id');
-      this.company = data.company; //this.companyService.getCompany('MyInvoice_Company_01');
       this.client = data.client; //this.clientService.getClient('MyInvoice_Client_01');
-      this.invoice = data.invoice; //this.invoiceService.getInvoice('MyInvoice_User_01');
     });
-    this.show = this.invoice.items.length > 0;
-    this.calculateSubTotal();
+
+    if (this.invoiceId == null) {
+      this.selectedInvoice = this.invoices[0];
+    } else {
+      this.selectedInvoice = this.invoices.find((invoice) => {
+        return invoice.id === this.invoiceId;
+      });
+    }
+
+    this.loadCompanyAndClient();
   }
 
-  addNewItem(): void {
-    this.invoice.items.push(this.newItem);
-    this.show = this.invoice.items.length > 0;
-    this.calculateSubTotal();
-    this.resetItem();
-
-    setTimeout(() => {
-      const newItemIndex = this.invoice.items.length - 1;
-      this.invoice.items[newItemIndex].adding = true;
-      setTimeout(() => {
-        this.invoice.items[newItemIndex].adding = false;
-      }, 300);
+  loadCompanyAndClient() {
+    this.company = data.companies.find((company) => {
+      return company.id === this.selectedInvoice?.companyId;
     });
+    this.client = data.clients.find((client) => {
+      return client.id === this.selectedInvoice?.clientId;
+    });
+    this.calculateSubTotal();
   }
 
   calculateSubTotal(): void {
-    this.subtotal = this.invoice.items
-      .reduce((accumulator, item) => accumulator + item.hours * item.price, 0)
+    this.subtotal = this.selectedInvoice.items
+      .reduce(
+        (accumulator: number, item: Item) =>
+          accumulator + item.hours * item.price,
+        0
+      )
       .toFixed(2);
     this.wordsSubtotal = converter.toWords(this.subtotal);
-  }
-
-  removeItem(item: Item): void {
-    const index = this.invoice.items.indexOf(item);
-    if (index !== -1) {
-      this.invoice.items[index].removing = true;
-      setTimeout(() => {
-        this.invoice.items.splice(index, 1);
-        this.calculateSubTotal();
-      }, 300);
-    }
-  }
-
-  resetItem(): void {
-    this.newItem = newEmptyItem();
   }
 }

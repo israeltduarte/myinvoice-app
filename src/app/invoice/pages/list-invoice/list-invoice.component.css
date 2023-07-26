@@ -214,10 +214,6 @@
   box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.5);
 }
 
-.invoice {
-  margin-bottom: 60px;
-}
-
 .invoice-number,
 .invoice-date {
   text-align: right;
