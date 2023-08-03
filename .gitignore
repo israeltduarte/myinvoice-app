@@ -93,3 +93,7 @@ out/
 .lock
 *.bin
 *.lock
+
+myinvoice-app/node_modules/
+myinvoice-app/.angular/
+*.DS_Store
