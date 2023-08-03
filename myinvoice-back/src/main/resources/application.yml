@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: my-invoice-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/myinvoicedb
+    username: postgres
+    password: postgres
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      fail-on-empty-beans: false
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        default_schema: "public"
+      originPrefix: MI
+    open-in-view: false
+  output:
+    ansi:
+      enabled: ALWAYS
