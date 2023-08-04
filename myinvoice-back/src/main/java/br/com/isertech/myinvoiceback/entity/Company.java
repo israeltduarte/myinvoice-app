@@ -30,6 +30,7 @@ public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String userId;
     private String name;
     private String fantasyName;
     private Long number;
@@ -55,6 +56,7 @@ public class Company {
 
         return "Company{" +
                 "id=" + id +
+                ", userId='" + userId + '\'' +
                 ", name='" + name + '\'' +
                 ", fantasyName='" + fantasyName + '\'' +
                 ", number=" + number +

@@ -22,7 +22,7 @@ public class CompanyService {
     }
 
     public List<Company> getAllCompanies(String userId) {
-        List<Company> companies = companyRepository.findAllById(userId);
+        List<Company> companies = companyRepository.findAllByUserId(userId);
         log.info("CompanyService - getAllCompanies() - List<Company> = {}", companies);
         return companies;
     }
