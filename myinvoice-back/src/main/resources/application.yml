@@ -1,23 +1,86 @@
+server:
+  port: 8081
+  servlet:
+    context-path: '/mi-myinvoice-back/'
+
 spring:
   application:
-    name: my-invoice-service
+    name: my-invoice-back
+  #  cloud:
+  #    openfeign:
+  #      client:
+  #        config:
+  #          user-client:
+  #            connectTimeout: 5000
+  #            readTimeout: 5000
+  #            loggerLevel: full
+  data:
+    web:
+      pageable:
+        page-parameter: 0
+        default-page-size: 50
   datasource:
     url: jdbc:postgresql://localhost:5432/myinvoicedb
     username: postgres
     password: postgres
-  jackson:
-    default-property-inclusion: non_null
-    serialization:
-      fail-on-empty-beans: false
   jpa:
     database: POSTGRESQL
     hibernate:
       ddl-auto: create-drop
+      jdbc:
+        lob.non-contextual-creation: true
     properties:
       hibernate:
         default_schema: "public"
       originPrefix: MI
     open-in-view: false
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      fail-on-empty-beans: false
   output:
     ansi:
       enabled: ALWAYS
+
+logging:
+  level:
+    br.isertech.com.myinvoice-back: TRACE
+    root: INFO
+    org.springframework.web: DEBUG
+    org.hibernate: INFO
+
+wt:
+  serviceRegistry:
+    username: serviceregistry
+    password: vento123
+  auth:
+    jwtSecret: test
+    jwtExpirationMs: 14400000
+
+eureka:
+  client:
+    service-url:
+      defaultZone: 'http://${mi.serviceRegistry.username}:${mi.serviceRegistry.password}@localhost:8761/eureka'
+  instance:
+    hostname: localhost
+
+#clients:
+#  user-client:
+#    name: 'user-client'
+#    url: 'localhost:8080/wt-user-service'
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      circuitbreakerInstance:
+        slidingWindowSize: 100
+        permittedNumberOfCallsInHalfOpenState: 10
+        slidingWindowType: COUNT_BASED
+        minimumNumberOfCalls: 100
+        waitDurationInOpenState: 60s
+        failureRateThreshold: 80
+  retry:
+    instances:
+      retryInstance:
+        max-attempts: 3
+        waitDuration: 5s
