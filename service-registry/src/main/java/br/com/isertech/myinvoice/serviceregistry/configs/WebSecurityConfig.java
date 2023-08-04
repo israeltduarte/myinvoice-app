@@ -14,22 +14,35 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class WebSecurityConfig {
 
-    @Value("${wt.serviceRegistry.username}")
+    @Value("${mi.serviceRegistry.username}")
     private String username;
 
-    @Value("${wt.serviceRegistry.password}")
+    @Value("${mi.serviceRegistry.password}")
     private String password;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.httpBasic().and().authorizeRequests().anyRequest().authenticated().and().csrf().disable().formLogin();
+        http
+                .httpBasic()
+                .and()
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated()
+                .and()
+                .csrf()
+                .disable()
+                .formLogin();
 
         return http.build();
     }
 
     @Bean
     public InMemoryUserDetailsManager userDetailsService() {
-        UserDetails user = User.withUsername(username).password(passwordEncoder().encode(password)).roles("ADMIN").build();
+        UserDetails user = User.withUsername(username)
+                .password(passwordEncoder().encode(password))
+                .roles("ADMIN")
+                .build();
+
         return new InMemoryUserDetailsManager(user);
     }
 
