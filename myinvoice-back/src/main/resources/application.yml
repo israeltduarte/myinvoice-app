@@ -49,7 +49,7 @@ logging:
     org.springframework.web: DEBUG
     org.hibernate: INFO
 
-wt:
+mi:
   serviceRegistry:
     username: serviceregistry
     password: vento123
