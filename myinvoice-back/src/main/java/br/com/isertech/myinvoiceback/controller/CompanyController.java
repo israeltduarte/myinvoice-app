@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/company")
+@RequestMapping("/companies")
 @Transactional
 public class CompanyController {
 
@@ -23,6 +23,12 @@ public class CompanyController {
 
     @GetMapping
     public ResponseEntity<List<Company>> getAllCompanies() {
+        List<Company> companies = companyService.getAllCompanies();
+        return ResponseEntity.status(HttpStatus.OK).body(companies);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Company>> getAllCompaniesByUserId() {
         List<Company> companies = companyService.getAllCompanies();
         return ResponseEntity.status(HttpStatus.OK).body(companies);
     }
