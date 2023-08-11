@@ -21,8 +21,8 @@ public class CompanyService {
         this.companyRepository = companyRepository;
     }
 
-    public List<Company> getAllCompanies(String userId) {
-        List<Company> companies = companyRepository.findAllByUserId(userId);
+    public List<Company> getAllCompanies() {
+        List<Company> companies = companyRepository.findAll();
         log.info("CompanyService - getAllCompanies() - List<Company> = {}", companies);
         return companies;
     }

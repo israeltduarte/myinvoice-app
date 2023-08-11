@@ -22,8 +22,8 @@ public class CompanyController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Company>> getAllCompanies(@RequestParam String userId) {
-        List<Company> companies = companyService.getAllCompanies(userId);
+    public ResponseEntity<List<Company>> getAllCompanies() {
+        List<Company> companies = companyService.getAllCompanies();
         return ResponseEntity.status(HttpStatus.OK).body(companies);
     }
 

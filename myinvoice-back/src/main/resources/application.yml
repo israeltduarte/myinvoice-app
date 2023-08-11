@@ -5,7 +5,7 @@ server:
 
 spring:
   application:
-    name: my-invoice-back
+    name: mi-myinvoice-back
   #  cloud:
   #    openfeign:
   #      client:
