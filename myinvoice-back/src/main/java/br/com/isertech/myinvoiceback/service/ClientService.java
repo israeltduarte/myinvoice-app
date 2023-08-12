@@ -21,22 +21,21 @@ public class ClientService {
 
     public List<Client> getAllClients() {
         List<Client> clients = clientRepository.findAll();
-        log.info("ClientService - getAllClients() - List<Client> = {}", clients);
+        log.info("ClientService - getAllClients() - List<Client>={}", clients);
         return clients;
     }
 
     public Client addClient(ClientDTO clientDTO) {
         Client client = ClientTransformer.fromDTO(clientDTO);
         client = clientRepository.save(client);
-        log.info("ClientService - client saved");
-        log.info("ClientService - addClient() - Client = {}", client);
+        log.info("ClientService - addClient() - Client={}", client);
         return client;
     }
 
     public Client getClientById(Long clientId) {
         Client client = clientRepository.findById(clientId)
                 .orElseThrow(() -> new ClientNotFoundException(Messages.CLIENT_NOT_FOUND));
-        log.info("ClientService - getClientById() - Client = {}", client);
+        log.info("ClientService - getClientById() - Client={}", client);
         return client;
     }
 
@@ -45,19 +44,17 @@ public class ClientService {
                 .orElseThrow(() -> new ClientNotFoundException(Messages.CLIENT_NOT_FOUND));
         client = ClientTransformer.updateEntity(client, clientDTO);
         client = clientRepository.save(client);
-        log.info("ClientService - updateClient() - Client = {}", client);
+        log.info("ClientService - updateClient() - Client={}", client);
         return client;
     }
 
     public void deleteClient(Long clientId) {
         clientRepository.deleteById(clientId);
-        log.info("ClientService - client deleted");
         log.info("ClientService - deleteClient()");
     }
 
     public void deleteAllClients() {
         clientRepository.deleteAll();
-        log.info("ClientService - clients deleted");
         log.info("ClientService - deleteAllClients()");
     }
 

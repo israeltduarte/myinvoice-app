@@ -31,7 +31,7 @@ public class InvoiceService {
 
     public List<Invoice> getAllInvoices() {
         List<Invoice> invoices = invoiceRepository.findAll();
-        log.info("InvoiceService - getAllInvoices() - List<Invoice> = {}", invoices);
+        log.info("InvoiceService - getAllInvoices() - List<Invoice>={}", invoices);
         return invoices;
     }
 
@@ -44,21 +44,19 @@ public class InvoiceService {
         invoice.setClient(client);
         invoice.setItems(items);
         invoice = invoiceRepository.save(invoice);
-        log.info("InvoiceService - invoice saved");
-        log.info("InvoiceService - addInvoice() - Invoice = {}", invoice);
+        log.info("InvoiceService - addInvoice() - Invoice={}", invoice);
         return invoice;
     }
 
     public Invoice getInvoiceById(Long invoiceId) {
         Invoice invoice = invoiceRepository.findById(invoiceId)
                 .orElseThrow(() -> new InvoiceNotFoundException(Messages.INVOICE_NOT_FOUND));
-        log.info("InvoiceService - getInvoiceById() - Invoice = {}", invoice);
+        log.info("InvoiceService - getInvoiceById() - Invoice={}", invoice);
         return invoice;
     }
 
     public void deleteInvoice(Long invoiceId) {
         invoiceRepository.deleteById(invoiceId);
-        log.info("InvoiceService - company deleted");
         log.info("InvoiceService - deleteInvoice()");
     }
 }

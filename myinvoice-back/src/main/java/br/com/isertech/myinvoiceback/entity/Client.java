@@ -19,7 +19,7 @@ import java.util.List;
 @Builder
 public class Client {
 
-    //    @Id
+//    @Id
 //    @GeneratedValue(generator = "iser-uuid-generator")
 //    @GenericGenerator(
 //            name = "iser-uuid-generator",
