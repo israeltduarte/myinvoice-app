@@ -7,8 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 import org.springframework.hateoas.RepresentationModel;
 
 import java.io.Serial;
@@ -36,7 +34,7 @@ public class MIUser extends RepresentationModel<MIUser> implements Serializable 
 //    private String id;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    private Long id;
     private String name;
     private String lastName;
     private String email;
