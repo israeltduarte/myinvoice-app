@@ -27,12 +27,6 @@ public class CompanyController {
         return ResponseEntity.status(HttpStatus.OK).body(companies);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Company>> getAllCompaniesByUserId() {
-        List<Company> companies = companyService.getAllCompanies();
-        return ResponseEntity.status(HttpStatus.OK).body(companies);
-    }
-
     @PostMapping
     public ResponseEntity<Company> addCompany(@RequestBody CompanyDTO companyDTO) {
         Company company = companyService.addCompany(companyDTO);
