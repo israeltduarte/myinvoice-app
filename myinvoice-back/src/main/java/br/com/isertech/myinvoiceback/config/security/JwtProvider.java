@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 @Component
 public class JwtProvider {
 
-    @Value("${wt.auth.jwtSecret}")
+    @Value("${mi.auth.jwtSecret}")
     private String jwtSecret;
 
-    @Value("${wt.auth.jwtExpirationMs}")
+    @Value("${mi.auth.jwtExpirationMs}")
     private int jwtExpirationMs;
 
     public String generateJwt(Authentication authentication) {

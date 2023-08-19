@@ -24,16 +24,13 @@ public class Role implements GrantedAuthority, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
 
-//    @Id
-//    @GeneratedValue(generator = "iser-uuid-generator")
-//    @GenericGenerator(
-//            name = "iser-uuid-generator",
-//            strategy = "br.com.isertech.myinvoiceback.util.IserUUIDGenerator",
-//            parameters = @Parameter(name = "prefix", value = "Role")
-//    )
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(generator = "iser-uuid-generator")
+    @GenericGenerator(
+            name = "iser-uuid-generator",
+            strategy = "br.com.isertech.myinvoiceback.util.IserUUIDGenerator",
+            parameters = @Parameter(name = "prefix", value = "Role")
+    )
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, unique = true, length = 30)
