@@ -29,7 +29,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         MIUser user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(Messages.USER_NOT_FOUND_INFO + username));
+                .orElseThrow(() -> new UsernameNotFoundException(Messages.USER_NOT_FOUND_INFO.concat(". username: " + username)));
 
         return UserDetailsImpl.build(user);
     }

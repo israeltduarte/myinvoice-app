@@ -66,7 +66,7 @@ public class UserService {
     public MIUser getUserById(String id) {
 
         var user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO.concat(id)));
+                .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO));
         log.info("UserService - getUserById() - UserDTO={}", user);
 
         return user;
@@ -91,7 +91,7 @@ public class UserService {
     public MIUser updateUserById(UserDTO dto, String id) {
 
         var user = userRepository.findById(id)
-                .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO.concat(id)));
+                .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO));
 
         List<Role> roles;
 
