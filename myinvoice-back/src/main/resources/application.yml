@@ -44,7 +44,7 @@ spring:
 
 logging:
   level:
-    br.isertech.com.myinvoice-back: TRACE
+    br.com.isertech.myinvoice-back: TRACE
     root: INFO
     org.springframework.web: DEBUG
     org.hibernate: INFO

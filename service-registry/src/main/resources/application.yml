@@ -9,9 +9,9 @@ mi:
   serviceRegistry:
     username: serviceregistry
     password: vento123
-#  myinvoiceBack:
-#    username: mimyinvoiceback
-#    password: vento123
+  myinvoiceBack:
+    username: mimyinvoiceback
+    password: vento123
 
 eureka:
   client:
