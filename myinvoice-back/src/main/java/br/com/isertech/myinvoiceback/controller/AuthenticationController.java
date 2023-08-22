@@ -7,6 +7,7 @@ import br.com.isertech.myinvoiceback.dto.LoginDTO;
 import br.com.isertech.myinvoiceback.dto.UserDTO;
 import br.com.isertech.myinvoiceback.service.RoleService;
 import br.com.isertech.myinvoiceback.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,8 +18,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

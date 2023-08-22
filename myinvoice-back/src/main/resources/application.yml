@@ -6,14 +6,6 @@ server:
 spring:
   application:
     name: mi-myinvoice-back
-  #  cloud:
-  #    openfeign:
-  #      client:
-  #        config:
-  #          user-client:
-  #            connectTimeout: 5000
-  #            readTimeout: 5000
-  #            loggerLevel: full
   data:
     web:
       pageable:
@@ -30,10 +22,9 @@ spring:
       jdbc:
         lob.non-contextual-creation: true
     properties:
-      hibernate:
-        default_schema: "public"
       originPrefix: MI
     open-in-view: false
+    show-sql: true
   jackson:
     default-property-inclusion: non_null
     serialization:

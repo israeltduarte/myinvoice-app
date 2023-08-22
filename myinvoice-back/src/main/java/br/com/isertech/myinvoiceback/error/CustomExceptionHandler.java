@@ -3,6 +3,7 @@ package br.com.isertech.myinvoiceback.error;
 import br.com.isertech.myinvoiceback.error.exception.ClientNotFoundException;
 import br.com.isertech.myinvoiceback.error.exception.CompanyNotFoundException;
 import br.com.isertech.myinvoiceback.error.exception.InvoiceNotFoundException;
+import br.com.isertech.myinvoiceback.error.exception.OperationFailedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -52,5 +53,16 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(OperationFailedException.class)
+    public ResponseEntity<CustomErrorResponse> operationFailed(Exception e) {
+
+        CustomErrorResponse errors = CustomErrorResponse.builder()
+                .message(e.getMessage())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .build();
+
+        return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 }

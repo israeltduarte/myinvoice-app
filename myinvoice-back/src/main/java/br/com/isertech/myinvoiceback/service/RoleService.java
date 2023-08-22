@@ -4,11 +4,13 @@ import br.com.isertech.myinvoiceback.constants.Messages;
 import br.com.isertech.myinvoiceback.dto.RoleDTO;
 import br.com.isertech.myinvoiceback.entity.Role;
 import br.com.isertech.myinvoiceback.enums.RoleType;
+import br.com.isertech.myinvoiceback.error.exception.OperationFailedException;
 import br.com.isertech.myinvoiceback.error.exception.RoleAlreadyExistsException;
 import br.com.isertech.myinvoiceback.error.exception.RoleNotFoundException;
 import br.com.isertech.myinvoiceback.repository.RoleRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,9 +53,12 @@ public class RoleService {
                 .build();
         try {
             role = roleRepository.save(role);
-        } catch (Exception e) {
+        } catch (DataIntegrityViolationException e) {
             log.error(Messages.ROLE_ALREADY_EXISTS.concat(dto.getRoleName()));
             throw new RoleAlreadyExistsException(Messages.ROLE_ALREADY_EXISTS.concat(dto.getRoleName()));
+        } catch (Exception e) {
+            log.error(Messages.OPERATION_FAILED);
+            throw new OperationFailedException(Messages.OPERATION_FAILED);
         }
         log.info("RoleService - registerRole() - Role={}", role);
 
