@@ -46,7 +46,9 @@ public class RoleService {
     public Role registerRole(RoleDTO dto) {
 
         log.info("RoleService - registerRole() - RoleDTO={}", dto);
-        Role role = Role.builder().roleName(RoleType.valueOf(dto.getRoleName())).build();
+        Role role = Role.builder()
+                .roleName(RoleType.ROLE_ADMIN)
+                .build();
         try {
             role = roleRepository.save(role);
         } catch (Exception e) {

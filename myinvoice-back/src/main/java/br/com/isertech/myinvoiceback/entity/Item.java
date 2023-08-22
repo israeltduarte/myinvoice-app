@@ -1,9 +1,12 @@
 package br.com.isertech.myinvoiceback.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -29,7 +32,7 @@ public class Item {
     private Long hourRate;
     private Long total;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="invoice_id")
+    @JoinColumn(name = "invoice_id")
     @JsonBackReference
     private Invoice invoice;
 }

@@ -22,7 +22,6 @@ public class IserUUIDGenerator implements IdentifierGenerator, Configurable {
         return String.format("%s_%s_%s", originPrefix, prefix, UUID.randomUUID());
     }
 
-    @Override
     public void configure(Type type, Properties params, ServiceRegistry serviceRegistry) {
         prefix = String.join("_", params.getProperty("prefix"));
         originPrefix = getProperty(serviceRegistry, "originPrefix");
@@ -33,7 +32,7 @@ public class IserUUIDGenerator implements IdentifierGenerator, Configurable {
     }
 
     @Override
-    public void configure(Map<String, Object> configurationValues) {
+    public void configure(Map configurationValues) {
         throw new UnsupportedOperationException("Unimplemented method 'configure'");
     }
 

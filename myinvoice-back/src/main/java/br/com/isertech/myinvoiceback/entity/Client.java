@@ -1,14 +1,12 @@
 package br.com.isertech.myinvoiceback.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +17,7 @@ import java.util.List;
 @Builder
 public class Client {
 
-//    @Id
+    //    @Id
 //    @GeneratedValue(generator = "iser-uuid-generator")
 //    @GenericGenerator(
 //            name = "iser-uuid-generator",
@@ -43,7 +41,6 @@ public class Client {
     private String exchange;
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     @JsonBackReference
-    @OnDelete(action = OnDeleteAction.SET_NULL)
     private List<Invoice> invoices;
 
     @Override

@@ -59,6 +59,7 @@ mi:
 
 eureka:
   client:
+    enabled: true
     service-url:
       defaultZone: 'http://${mi.serviceRegistry.username}:${mi.serviceRegistry.password}@localhost:8761/eureka'
   instance:

@@ -2,7 +2,6 @@ package br.com.isertech.myinvoiceback.entity;
 
 import br.com.isertech.myinvoiceback.enums.RoleType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,6 +10,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Parameter;
 import org.springframework.security.core.GrantedAuthority;
 
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 

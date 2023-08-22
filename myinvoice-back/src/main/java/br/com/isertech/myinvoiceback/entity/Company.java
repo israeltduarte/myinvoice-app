@@ -1,14 +1,12 @@
 package br.com.isertech.myinvoiceback.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +42,6 @@ public class Company {
     private String email;
     @OneToMany(mappedBy = "company", fetch = FetchType.LAZY)
     @JsonBackReference
-    @OnDelete(action = OnDeleteAction.SET_NULL)
     private List<Invoice> invoices;
 
     @Override
