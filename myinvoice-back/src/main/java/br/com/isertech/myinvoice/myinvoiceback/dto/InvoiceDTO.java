@@ -17,7 +17,7 @@ public class InvoiceDTO {
     private Long number;
     private LocalDate date;
     private String companyId;
-    private Long clientId;
+    private String clientId;
     private Long total;
     private String currency;
     private boolean isPublished;
