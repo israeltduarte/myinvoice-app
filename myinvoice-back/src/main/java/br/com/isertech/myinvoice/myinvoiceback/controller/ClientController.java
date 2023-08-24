@@ -10,6 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 @RestController
 @RequestMapping("/clients")
 @Transactional
@@ -25,6 +28,11 @@ public class ClientController {
     public ResponseEntity<Page<Client>> getAllClients(Pageable pageable) {
 
         Page<Client> clients = clientService.getAllClients(pageable);
+        if (!clients.isEmpty()) {
+            for (Client client : clients.toList()) {
+                client.add(linkTo(methodOn(ClientController.class).getClientById(client.getId())).withSelfRel());
+            }
+        }
 
         return ResponseEntity.status(HttpStatus.OK).body(clients);
     }
@@ -38,7 +46,7 @@ public class ClientController {
     }
 
     @GetMapping("/{clientId}")
-    public ResponseEntity<Client> getClient(@PathVariable String clientId) {
+    public ResponseEntity<Client> getClientById(@PathVariable String clientId) {
 
         Client client = clientService.getClientById(clientId);
 
