@@ -18,7 +18,7 @@ spring:
   jpa:
     database: POSTGRESQL
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
       jdbc:
         lob.non-contextual-creation: true
     properties:
@@ -35,7 +35,7 @@ spring:
 
 logging:
   level:
-    br.com.isertech.myinvoice-back: TRACE
+    br.com.isertech.myinvoice.myinvoiceback: TRACE
     root: INFO
     org.springframework.web: DEBUG
     org.hibernate: INFO
