@@ -7,9 +7,9 @@ import br.com.isertech.myinvoice.myinvoiceback.error.exception.CompanyNotFoundEx
 import br.com.isertech.myinvoice.myinvoiceback.repository.CompanyRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.CompanyTransformer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Slf4j
 @Service
@@ -21,32 +21,40 @@ public class CompanyService {
         this.companyRepository = companyRepository;
     }
 
-    public List<Company> getAllCompanies() {
-        List<Company> companies = companyRepository.findAll();
-        log.info("CompanyService - getAllCompanies() - List<Company>={}", companies);
+    public Page<Company> getAllCompanies(Pageable pageable) {
+
+        Page<Company> companies = companyRepository.findAll(pageable);
+        log.info("CompanyService - getAllCompanies() - Page<Company>={}", companies);
+
         return companies;
     }
 
     public Company addCompany(CompanyDTO dto) {
+
         Company company = CompanyTransformer.fromDTO(dto);
         company = companyRepository.save(company);
         log.info("CompanyService - addCompany() - Company={}", company);
+
         return company;
     }
 
-    public Company getCompanyById(Long companyId) {
+    public Company getCompanyById(String companyId) {
+
         Company company = companyRepository.findById(companyId)
                 .orElseThrow(() -> new CompanyNotFoundException(Messages.COMPANY_NOT_FOUND));
         log.info("CompanyService - getCompanyById() - Company={}", company);
+
         return company;
     }
 
-    public void deleteCompany(Long companyId) {
+    public void deleteCompany(String companyId) {
+
         companyRepository.deleteById(companyId);
         log.info("CompanyService - deleteCompany()");
     }
 
     public void deleteAllCompanies() {
+
         companyRepository.deleteAll();
         log.info("CompanyService - deleteAllCompanies()");
     }

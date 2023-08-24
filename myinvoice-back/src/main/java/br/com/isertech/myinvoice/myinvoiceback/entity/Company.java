@@ -6,7 +6,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,19 +19,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Company {
+public class Company extends RepresentationModel<Company> implements Serializable {
 
-    //    @Id
-//    @GeneratedValue(generator = "iser-uuid-generator")
-//    @GenericGenerator(
-//            name = "iser-uuid-generator",
-//            strategy = "br.com.isertech.myinvoice.myinvoiceback.util.IserUUIDGenerator",
-//            parameters = @Parameter(name = "prefix", value = "Company")
-//    )
-//    private String id;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "iser-uuid-generator")
+    @GenericGenerator(
+            name = "iser-uuid-generator",
+            strategy = "br.com.isertech.myinvoice.myinvoiceback.util.IserUUIDGenerator",
+            parameters = @Parameter(name = "prefix", value = "Company")
+    )
+    private String id;
     private String userId;
     private String name;
     private String fantasyName;
