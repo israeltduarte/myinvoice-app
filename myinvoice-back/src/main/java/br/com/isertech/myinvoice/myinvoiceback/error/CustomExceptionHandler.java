@@ -52,6 +52,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(RoleNotFoundException.class)
+    public ResponseEntity<CustomErrorResponse> roleNotFound(Exception e) {
+
+        CustomErrorResponse errors = CustomErrorResponse.builder()
+                .message(e.getMessage())
+                .status(HttpStatus.NOT_FOUND.value())
+                .build();
+
+        return new ResponseEntity<>(errors, HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(RoleAlreadyExistsException.class)
     public ResponseEntity<CustomErrorResponse> roleAlreadyExists(Exception e) {
 
