@@ -40,9 +40,8 @@ public class WebSecurityConfig {
         http
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint(authenticationEntryPoint))
-                .authorizeRequests(authorize -> authorize
-                        .anyRequest().permitAll()
-                )
+                .authorizeHttpRequests(request -> request
+                        .anyRequest().permitAll())
                 .csrf(AbstractHttpConfigurer::disable)
                 .logout(LogoutConfigurer::permitAll);
 
