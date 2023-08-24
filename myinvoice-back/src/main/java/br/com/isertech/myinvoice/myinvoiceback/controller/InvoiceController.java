@@ -23,25 +23,41 @@ public class InvoiceController {
 
     @GetMapping
     public ResponseEntity<List<Invoice>> getAllInvoices() {
+
         List<Invoice> invoices = this.invoiceService.getAllInvoices();
+
         return ResponseEntity.status(HttpStatus.OK).body(invoices);
     }
 
     @PostMapping
     public ResponseEntity<Invoice> addInvoice(@RequestBody InvoiceDTO invoiceDTO) {
+
         Invoice invoice = this.invoiceService.addInvoice(invoiceDTO);
+
         return ResponseEntity.status(HttpStatus.CREATED).body(invoice);
     }
 
     @GetMapping("/{invoiceId}")
     public ResponseEntity<Invoice> getInvoice(@PathVariable Long invoiceId) {
+
         Invoice invoice = this.invoiceService.getInvoiceById(invoiceId);
+
         return ResponseEntity.status(HttpStatus.OK).body(invoice);
     }
 
     @DeleteMapping("/{invoiceId}")
     public ResponseEntity<Void> deleteInvoice(@PathVariable Long invoiceId) {
+
         this.invoiceService.deleteInvoice(invoiceId);
+
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    @DeleteMapping
+    public ResponseEntity<Void> deleteAllInvoices() {
+
+        this.invoiceService.deleteAllInvoices();
+
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

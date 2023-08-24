@@ -30,12 +30,15 @@ public class InvoiceService {
     }
 
     public List<Invoice> getAllInvoices() {
+
         List<Invoice> invoices = invoiceRepository.findAll();
         log.info("InvoiceService - getAllInvoices() - List<Invoice>={}", invoices);
+
         return invoices;
     }
 
     public Invoice addInvoice(InvoiceDTO invoiceDTO) {
+
         Invoice invoice = InvoiceTransformer.fromDTO(invoiceDTO);
         Company company = companyService.getCompanyById(invoiceDTO.getCompanyId());
         Client client = clientService.getClientById(invoiceDTO.getClientId());
@@ -45,18 +48,28 @@ public class InvoiceService {
         invoice.setItems(items);
         invoice = invoiceRepository.save(invoice);
         log.info("InvoiceService - addInvoice() - Invoice={}", invoice);
+
         return invoice;
     }
 
     public Invoice getInvoiceById(Long invoiceId) {
+
         Invoice invoice = invoiceRepository.findById(invoiceId)
                 .orElseThrow(() -> new InvoiceNotFoundException(Messages.INVOICE_NOT_FOUND));
         log.info("InvoiceService - getInvoiceById() - Invoice={}", invoice);
+
         return invoice;
     }
 
     public void deleteInvoice(Long invoiceId) {
+
         invoiceRepository.deleteById(invoiceId);
         log.info("InvoiceService - deleteInvoice()");
+    }
+
+    public void deleteAllInvoices() {
+
+        invoiceRepository.deleteAll();
+        log.info("InvoiceService - deleteAllInvoices()");
     }
 }
