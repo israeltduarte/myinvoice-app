@@ -3,6 +3,7 @@ package br.com.isertech.myinvoice.myinvoiceback.service;
 import br.com.isertech.myinvoice.myinvoiceback.constants.Messages;
 import br.com.isertech.myinvoice.myinvoiceback.dto.ClientDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Client;
+import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
 import br.com.isertech.myinvoice.myinvoiceback.error.exception.ClientNotFoundException;
 import br.com.isertech.myinvoice.myinvoiceback.repository.ClientRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.ClientTransformer;
@@ -15,9 +16,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class ClientService {
 
+    private final UserService userService;
     private final ClientRepository clientRepository;
 
-    public ClientService(ClientRepository clientRepository) {
+    public ClientService(UserService userService, ClientRepository clientRepository) {
+        this.userService = userService;
         this.clientRepository = clientRepository;
     }
 
@@ -70,4 +73,12 @@ public class ClientService {
         log.info("ClientService - deleteAllClients()");
     }
 
+    public Page<Client> getAllClientsByUserId(String id, Pageable pageable) {
+
+        MIUser user = userService.getUserById(id);
+        Page<Client> clients = clientRepository.findAllByUserId(user.getId(), pageable);
+        log.info("ClientService - getAllClientsByUserId() - Page<Client>={}", clients);
+
+        return clients;
+    }
 }

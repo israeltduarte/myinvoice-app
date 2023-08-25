@@ -1,8 +1,10 @@
 package br.com.isertech.myinvoice.myinvoiceback.controller;
 
 import br.com.isertech.myinvoice.myinvoiceback.dto.UserDTO;
+import br.com.isertech.myinvoice.myinvoiceback.entity.Client;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Company;
 import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
+import br.com.isertech.myinvoice.myinvoiceback.service.ClientService;
 import br.com.isertech.myinvoice.myinvoiceback.service.CompanyService;
 import br.com.isertech.myinvoice.myinvoiceback.service.UserService;
 import jakarta.validation.Valid;
@@ -24,9 +26,10 @@ public class UserController {
 
     @Autowired
     UserService userService;
-
     @Autowired
     CompanyService companyService;
+    @Autowired
+    ClientService clientService;
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -52,7 +55,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/companies")
-    public ResponseEntity<Page<Company>> getAllCompaniesByUser(@PathVariable String id, Pageable pageable) {
+    public ResponseEntity<Page<Company>> getAllCompaniesByUserId(@PathVariable String id, Pageable pageable) {
 
         Page<Company> companies = companyService.getAllCompaniesByUserId(id, pageable);
         if (!companies.isEmpty()) {
@@ -62,6 +65,19 @@ public class UserController {
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(companies);
+    }
+
+    @GetMapping("/{id}/clients")
+    public ResponseEntity<Page<Client>> getAllClientsByUserId(@PathVariable String id, Pageable pageable) {
+
+        Page<Client> clients = clientService.getAllClientsByUserId(id, pageable);
+        if (!clients.isEmpty()) {
+            for (Client client : clients.toList()) {
+                client.add(linkTo(methodOn(UserController.class).getUserById(client.getId())).withSelfRel());
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(clients);
     }
 
     @PutMapping("/{id}")
