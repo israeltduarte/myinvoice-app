@@ -4,6 +4,8 @@ server:
     context-path: '/mi-myinvoice-back/'
 
 spring:
+  profiles:
+    active: dev
   application:
     name: mi-myinvoice-back
   data:
@@ -18,7 +20,7 @@ spring:
   jpa:
     database: POSTGRESQL
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
       jdbc:
         lob.non-contextual-creation: true
     properties:
@@ -41,6 +43,7 @@ logging:
     root: INFO
     org.springframework.web: DEBUG
     org.hibernate: INFO
+    web: DEBUG
 
 mi:
   serviceRegistry:

@@ -25,9 +25,9 @@ public class Role implements GrantedAuthority, Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator = "iser-uuid-generator")
+    @GeneratedValue(generator = "role-uuid-generator")
     @GenericGenerator(
-            name = "iser-uuid-generator",
+            name = "role-uuid-generator",
             strategy = "br.com.isertech.myinvoice.myinvoiceback.util.IserUUIDGenerator",
             parameters = @Parameter(name = "prefix", value = "Role")
     )

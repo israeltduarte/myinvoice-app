@@ -22,9 +22,9 @@ import java.util.List;
 public class Company extends RepresentationModel<Company> implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "iser-uuid-generator")
+    @GeneratedValue(generator = "company-uuid-generator")
     @GenericGenerator(
-            name = "iser-uuid-generator",
+            name = "company-uuid-generator",
             strategy = "br.com.isertech.myinvoice.myinvoiceback.util.IserUUIDGenerator",
             parameters = @Parameter(name = "prefix", value = "Company")
     )

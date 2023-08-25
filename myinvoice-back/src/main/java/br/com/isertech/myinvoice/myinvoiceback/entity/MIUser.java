@@ -27,9 +27,9 @@ public class MIUser extends RepresentationModel<MIUser> implements Serializable 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(generator = "iser-uuid-generator")
+    @GeneratedValue(generator = "miuser-uuid-generator")
     @GenericGenerator(
-            name = "iser-uuid-generator",
+            name = "miuser-uuid-generator",
             strategy = "br.com.isertech.myinvoice.myinvoiceback.util.IserUUIDGenerator",
             parameters = @Parameter(name = "prefix", value = "MIUser")
     )

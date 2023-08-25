@@ -21,9 +21,9 @@ import java.util.List;
 public class Invoice extends RepresentationModel<Invoice> implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "iser-uuid-generator")
+    @GeneratedValue(generator = "invoice-uuid-generator")
     @GenericGenerator(
-            name = "iser-uuid-generator",
+            name = "invoice-uuid-generator",
             strategy = "br.com.isertech.myinvoice.myinvoiceback.util.IserUUIDGenerator",
             parameters = @Parameter(name = "prefix", value = "Invoice")
     )
