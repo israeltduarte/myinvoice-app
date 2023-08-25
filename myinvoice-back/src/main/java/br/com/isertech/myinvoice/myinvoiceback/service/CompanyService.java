@@ -3,6 +3,7 @@ package br.com.isertech.myinvoice.myinvoiceback.service;
 import br.com.isertech.myinvoice.myinvoiceback.constants.Messages;
 import br.com.isertech.myinvoice.myinvoiceback.dto.CompanyDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Company;
+import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
 import br.com.isertech.myinvoice.myinvoiceback.error.exception.CompanyNotFoundException;
 import br.com.isertech.myinvoice.myinvoiceback.repository.CompanyRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.CompanyTransformer;
@@ -15,9 +16,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class CompanyService {
 
+    private final UserService userService;
     private final CompanyRepository companyRepository;
 
-    public CompanyService(CompanyRepository companyRepository) {
+    public CompanyService(UserService userService, CompanyRepository companyRepository) {
+        this.userService = userService;
         this.companyRepository = companyRepository;
     }
 
@@ -57,5 +60,14 @@ public class CompanyService {
 
         companyRepository.deleteAll();
         log.info("CompanyService - deleteAllCompanies()");
+    }
+
+    public Page<Company> getAllCompaniesByUserId(String id, Pageable pageable) {
+
+        MIUser user = userService.getUserById(id);
+        Page<Company> companies = companyRepository.findAllByUserId(user.getId(), pageable);
+        log.info("CompanyService - getAllCompaniesByUserId() - Page<Company>={}", companies);
+
+        return companies;
     }
 }

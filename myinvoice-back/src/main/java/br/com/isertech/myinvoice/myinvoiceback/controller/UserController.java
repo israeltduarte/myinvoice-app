@@ -1,7 +1,9 @@
 package br.com.isertech.myinvoice.myinvoiceback.controller;
 
 import br.com.isertech.myinvoice.myinvoiceback.dto.UserDTO;
+import br.com.isertech.myinvoice.myinvoiceback.entity.Company;
 import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
+import br.com.isertech.myinvoice.myinvoiceback.service.CompanyService;
 import br.com.isertech.myinvoice.myinvoiceback.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    CompanyService companyService;
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
@@ -44,6 +49,19 @@ public class UserController {
         MIUser user = userService.getUserById(id);
 
         return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
+
+    @GetMapping("/{id}/companies")
+    public ResponseEntity<Page<Company>> getAllCompaniesByUser(@PathVariable String id, Pageable pageable) {
+
+        Page<Company> companies = companyService.getAllCompaniesByUserId(id, pageable);
+        if (!companies.isEmpty()) {
+            for (Company company : companies.toList()) {
+                company.add(linkTo(methodOn(UserController.class).getUserById(company.getId())).withSelfRel());
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(companies);
     }
 
     @PutMapping("/{id}")
