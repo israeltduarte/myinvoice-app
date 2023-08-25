@@ -11,6 +11,8 @@ import br.com.isertech.myinvoice.myinvoiceback.repository.InvoiceRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.InvoiceTransformer;
 import br.com.isertech.myinvoice.myinvoiceback.util.ItemTransformer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,10 +31,10 @@ public class InvoiceService {
         this.clientService = clientService;
     }
 
-    public List<Invoice> getAllInvoices() {
+    public Page<Invoice> getAllInvoices(Pageable pageable) {
 
-        List<Invoice> invoices = invoiceRepository.findAll();
-        log.info("InvoiceService - getAllInvoices() - List<Invoice>={}", invoices);
+        Page<Invoice> invoices = invoiceRepository.findAll(pageable);
+        log.info("InvoiceService - getAllInvoices() - Page<Invoice>={}", invoices);
 
         return invoices;
     }
@@ -52,7 +54,7 @@ public class InvoiceService {
         return invoice;
     }
 
-    public Invoice getInvoiceById(Long invoiceId) {
+    public Invoice getInvoiceById(String invoiceId) {
 
         Invoice invoice = invoiceRepository.findById(invoiceId)
                 .orElseThrow(() -> new InvoiceNotFoundException(Messages.INVOICE_NOT_FOUND));
@@ -61,7 +63,7 @@ public class InvoiceService {
         return invoice;
     }
 
-    public void deleteInvoice(Long invoiceId) {
+    public void deleteInvoice(String invoiceId) {
 
         invoiceRepository.deleteById(invoiceId);
         log.info("InvoiceService - deleteInvoice()");

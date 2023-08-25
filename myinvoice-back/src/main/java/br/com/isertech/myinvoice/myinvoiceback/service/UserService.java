@@ -1,9 +1,9 @@
 package br.com.isertech.myinvoice.myinvoiceback.service;
 
+import br.com.isertech.myinvoice.myinvoiceback.constants.Messages;
 import br.com.isertech.myinvoice.myinvoiceback.dto.UserDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Role;
-import br.com.isertech.myinvoice.myinvoiceback.constants.Messages;
 import br.com.isertech.myinvoice.myinvoiceback.error.exception.UserNotFoundException;
 import br.com.isertech.myinvoice.myinvoiceback.repository.UserRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.MIUserTransformer;
@@ -65,7 +65,7 @@ public class UserService {
 
     public MIUser getUserById(String id) {
 
-        var user = userRepository.findById(id)
+        MIUser user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO));
         log.info("UserService - getUserById() - UserDTO={}", user);
 
@@ -74,7 +74,7 @@ public class UserService {
 
     public boolean existsByUsername(String username) {
 
-        var exists = userRepository.findByUsername(username).isPresent();
+        boolean exists = userRepository.findByUsername(username).isPresent();
         log.warn("UserService - existsByUsername() - " + Messages.USERNAME_ALREADY_EXISTS);
 
         return exists;
@@ -82,7 +82,7 @@ public class UserService {
 
     public boolean existsByEmail(String email) {
 
-        var exists = userRepository.findByEmail(email).isPresent();
+        boolean exists = userRepository.findByEmail(email).isPresent();
         log.warn("UserService - existsByEmail() - " + Messages.EMAIL_ALREADY_EXISTS);
 
         return exists;
@@ -90,7 +90,7 @@ public class UserService {
 
     public MIUser updateUserById(UserDTO dto, String id) {
 
-        var user = userRepository.findById(id)
+        MIUser user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO));
 
         List<Role> roles;
@@ -112,12 +112,6 @@ public class UserService {
 
         MIUser user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO));
-//        try {
-//            weightClient.deleteAllWeights(id);
-//        } catch (Exception e) {
-//            log.error("Failed to reach out to weight-service.");
-//            throw new WeightClientException(Messages.WEIGHT_CLIENT_EXCEPTION);
-//        }
 
         userRepository.delete(user);
 

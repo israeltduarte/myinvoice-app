@@ -3,6 +3,8 @@ package br.com.isertech.myinvoice.myinvoiceback.controller;
 import br.com.isertech.myinvoice.myinvoiceback.dto.InvoiceDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Invoice;
 import br.com.isertech.myinvoice.myinvoiceback.service.InvoiceService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,9 +24,9 @@ public class InvoiceController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Invoice>> getAllInvoices() {
+    public ResponseEntity<Page<Invoice>> getAllInvoices(Pageable pageable) {
 
-        List<Invoice> invoices = this.invoiceService.getAllInvoices();
+        Page<Invoice> invoices = this.invoiceService.getAllInvoices(pageable);
 
         return ResponseEntity.status(HttpStatus.OK).body(invoices);
     }
@@ -38,7 +40,7 @@ public class InvoiceController {
     }
 
     @GetMapping("/{invoiceId}")
-    public ResponseEntity<Invoice> getInvoice(@PathVariable Long invoiceId) {
+    public ResponseEntity<Invoice> getInvoice(@PathVariable String invoiceId) {
 
         Invoice invoice = this.invoiceService.getInvoiceById(invoiceId);
 
@@ -46,7 +48,7 @@ public class InvoiceController {
     }
 
     @DeleteMapping("/{invoiceId}")
-    public ResponseEntity<Void> deleteInvoice(@PathVariable Long invoiceId) {
+    public ResponseEntity<Void> deleteInvoice(@PathVariable String invoiceId) {
 
         this.invoiceService.deleteInvoice(invoiceId);
 

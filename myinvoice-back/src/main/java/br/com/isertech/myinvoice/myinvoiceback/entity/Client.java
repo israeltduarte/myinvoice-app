@@ -46,7 +46,7 @@ public class Client extends RepresentationModel<Client> implements Serializable 
 
     @Override
     public String toString() {
-        List<Long> invoicesToString = new ArrayList<>();
+        List<String> invoicesToString = new ArrayList<>();
         if (this.invoices != null) {
             invoicesToString = invoices.stream().map(Invoice::getId).toList();
         }

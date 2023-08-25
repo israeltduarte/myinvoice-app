@@ -5,7 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
+import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -14,19 +18,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Invoice {
+public class Invoice extends RepresentationModel<Invoice> implements Serializable {
 
-    //    @Id
-//    @GeneratedValue(generator = "iser-uuid-generator")
-//    @GenericGenerator(
-//            name = "iser-uuid-generator",
-//            strategy = "br.com.isertech.myinvoice.myinvoiceback.util.IserUUIDGenerator",
-//            parameters = @Parameter(name = "prefix", value = "Invoice")
-//    )
-//    private String id;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(generator = "iser-uuid-generator")
+    @GenericGenerator(
+            name = "iser-uuid-generator",
+            strategy = "br.com.isertech.myinvoice.myinvoiceback.util.IserUUIDGenerator",
+            parameters = @Parameter(name = "prefix", value = "Invoice")
+    )
+    private String id;
     private Long number;
     private LocalDate date;
     private Long total;

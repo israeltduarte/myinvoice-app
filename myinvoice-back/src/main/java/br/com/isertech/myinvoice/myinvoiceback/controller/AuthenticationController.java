@@ -1,11 +1,12 @@
 package br.com.isertech.myinvoice.myinvoiceback.controller;
 
+import br.com.isertech.myinvoice.myinvoiceback.config.security.JwtProvider;
+import br.com.isertech.myinvoice.myinvoiceback.constants.Messages;
 import br.com.isertech.myinvoice.myinvoiceback.dto.JwtDTO;
 import br.com.isertech.myinvoice.myinvoiceback.dto.LoginDTO;
 import br.com.isertech.myinvoice.myinvoiceback.dto.UserDTO;
+import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
 import br.com.isertech.myinvoice.myinvoiceback.service.RoleService;
-import br.com.isertech.myinvoice.myinvoiceback.config.security.JwtProvider;
-import br.com.isertech.myinvoice.myinvoiceback.constants.Messages;
 import br.com.isertech.myinvoice.myinvoiceback.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +49,7 @@ public class AuthenticationController {
         if (userService.existsByEmail(dto.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(Messages.EMAIL_ALREADY_EXISTS);
         }
-        var user = userService.addUser(dto);
+        MIUser user = userService.addUser(dto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
