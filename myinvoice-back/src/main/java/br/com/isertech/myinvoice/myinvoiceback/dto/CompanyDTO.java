@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 public class CompanyDTO {
 
     private String name;
+    private String userId;
     private String fantasyName;
     private Long number;
     private String address1;

@@ -51,6 +51,8 @@ public class MIUser extends RepresentationModel<MIUser> implements Serializable 
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private List<Role> roles;
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Company> companies;
 
 }
 

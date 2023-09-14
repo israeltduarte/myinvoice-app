@@ -29,7 +29,8 @@ public class Company extends RepresentationModel<Company> implements Serializabl
             parameters = @Parameter(name = "prefix", value = "Company")
     )
     private String id;
-    private String userId;
+    @ManyToOne
+    private MIUser user;
     private String name;
     private String fantasyName;
     private Long number;
@@ -54,7 +55,7 @@ public class Company extends RepresentationModel<Company> implements Serializabl
 
         return "Company{" +
                 "id=" + id +
-                ", userId='" + userId + '\'' +
+                ", userId='" + user.getId() + '\'' +
                 ", name='" + name + '\'' +
                 ", fantasyName='" + fantasyName + '\'' +
                 ", number=" + number +

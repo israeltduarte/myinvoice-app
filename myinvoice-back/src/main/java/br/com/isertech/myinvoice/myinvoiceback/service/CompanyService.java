@@ -5,6 +5,7 @@ import br.com.isertech.myinvoice.myinvoiceback.dto.CompanyDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Company;
 import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
 import br.com.isertech.myinvoice.myinvoiceback.error.exception.CompanyNotFoundException;
+import br.com.isertech.myinvoice.myinvoiceback.error.exception.UserNotFoundException;
 import br.com.isertech.myinvoice.myinvoiceback.repository.CompanyRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.CompanyTransformer;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,14 @@ public class CompanyService {
 
     public Company addCompany(CompanyDTO dto) {
 
+        MIUser user = userService.getUserById(dto.getUserId());
+        if (user == null) {
+            throw new UserNotFoundException(Messages.USER_NOT_FOUND_INFO);
+        }
+
         Company company = CompanyTransformer.fromDTO(dto);
+        company.setUser(user);
+
         company = companyRepository.save(company);
         log.info("CompanyService - addCompany() - Company={}", company);
 
