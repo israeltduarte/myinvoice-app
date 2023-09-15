@@ -1,5 +1,6 @@
 package br.com.isertech.myinvoice.myinvoiceback.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
@@ -52,8 +53,10 @@ public class MIUser extends RepresentationModel<MIUser> implements Serializable 
     )
     private List<Role> roles;
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Company> companies;
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Client> clients;
 }
 
