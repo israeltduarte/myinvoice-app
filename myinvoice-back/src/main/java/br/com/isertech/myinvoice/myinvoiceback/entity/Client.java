@@ -30,6 +30,7 @@ public class Client extends RepresentationModel<Client> implements Serializable 
     )
     private String id;
     @ManyToOne
+    @JsonBackReference
     private MIUser user;
     private String name;
     private Long number;

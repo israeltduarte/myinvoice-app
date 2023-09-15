@@ -30,6 +30,7 @@ public class Company extends RepresentationModel<Company> implements Serializabl
     )
     private String id;
     @ManyToOne
+    @JsonBackReference
     private MIUser user;
     private String name;
     private String fantasyName;
