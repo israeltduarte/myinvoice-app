@@ -5,6 +5,7 @@ import br.com.isertech.myinvoice.myinvoiceback.dto.ClientDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Client;
 import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
 import br.com.isertech.myinvoice.myinvoiceback.error.exception.ClientNotFoundException;
+import br.com.isertech.myinvoice.myinvoiceback.error.exception.UserNotFoundException;
 import br.com.isertech.myinvoice.myinvoiceback.repository.ClientRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.ClientTransformer;
 import lombok.extern.slf4j.Slf4j;
@@ -34,7 +35,10 @@ public class ClientService {
 
     public Client addClient(ClientDTO clientDTO) {
 
+        MIUser user = userService.getUserById(clientDTO.getUserId());
         Client client = ClientTransformer.fromDTO(clientDTO);
+        client.setUser(user);
+
         client = clientRepository.save(client);
         log.info("ClientService - addClient() - Client={}", client);
 

@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ClientDTO {
 
-    private String userId;
     private String name;
+    private String userId;
     private Long number;
     private String address1;
     private String address2;

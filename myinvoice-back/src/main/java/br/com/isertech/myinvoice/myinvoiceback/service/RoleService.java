@@ -45,16 +45,16 @@ public class RoleService {
         return roles;
     }
 
-    public Role registerRole(RoleDTO dto) {
+    public Role registerRole(RoleDTO roleDTO) {
 
-        log.info("RoleService - registerRole() - RoleDTO={}", dto);
+        log.info("RoleService - registerRole() - RoleDTO={}", roleDTO);
         Role role = Role.builder()
-                .roleName(RoleType.valueOf(dto.getRoleName()))
+                .roleName(RoleType.valueOf(roleDTO.getRoleName()))
                 .build();
         try {
             role = roleRepository.save(role);
         } catch (DataIntegrityViolationException e) {
-            String message = Messages.ROLE_ALREADY_EXISTS.concat(". RoleType = " + dto.getRoleName());
+            String message = Messages.ROLE_ALREADY_EXISTS.concat(". RoleType = " + roleDTO.getRoleName());
             log.error(message);
             throw new RoleAlreadyExistsException(message);
         } catch (Exception e) {

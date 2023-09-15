@@ -29,7 +29,8 @@ public class Client extends RepresentationModel<Client> implements Serializable 
             parameters = @Parameter(name = "prefix", value = "Client")
     )
     private String id;
-    private String userId;
+    @ManyToOne
+    private MIUser user;
     private String name;
     private Long number;
     private String address1;
@@ -53,7 +54,7 @@ public class Client extends RepresentationModel<Client> implements Serializable 
 
         return "Client{" +
                 "id=" + id +
-                ", userId='" + userId + '\'' +
+                ", userId='" + user.getId() + '\'' +
                 ", name='" + name + '\'' +
                 ", number=" + number +
                 ", address1='" + address1 + '\'' +

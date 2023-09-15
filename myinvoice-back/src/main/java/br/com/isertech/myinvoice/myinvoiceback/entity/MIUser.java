@@ -53,6 +53,7 @@ public class MIUser extends RepresentationModel<MIUser> implements Serializable 
     private List<Role> roles;
     @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Company> companies;
-
+    @OneToMany(mappedBy = "user", orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Client> clients;
 }
 

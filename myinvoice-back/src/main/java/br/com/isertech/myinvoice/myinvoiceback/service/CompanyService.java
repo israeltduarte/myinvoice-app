@@ -36,10 +36,6 @@ public class CompanyService {
     public Company addCompany(CompanyDTO dto) {
 
         MIUser user = userService.getUserById(dto.getUserId());
-        if (user == null) {
-            throw new UserNotFoundException(Messages.USER_NOT_FOUND_INFO);
-        }
-
         Company company = CompanyTransformer.fromDTO(dto);
         company.setUser(user);
 

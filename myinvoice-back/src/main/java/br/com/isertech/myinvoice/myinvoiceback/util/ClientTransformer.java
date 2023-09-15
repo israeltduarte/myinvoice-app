@@ -12,7 +12,6 @@ public class ClientTransformer {
 
         return Client.builder()
                 .name(dto.getName())
-                .userId(dto.getUserId())
                 .number(dto.getNumber())
                 .address1(dto.getAddress1())
                 .address2(dto.getAddress2())

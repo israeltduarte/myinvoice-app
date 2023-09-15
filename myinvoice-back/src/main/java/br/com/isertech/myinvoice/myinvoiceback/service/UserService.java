@@ -40,22 +40,22 @@ public class UserService {
         return users;
     }
 
-    public MIUser addUser(UserDTO dto) {
+    public MIUser addUser(UserDTO userDTO) {
 
-        MIUser user = getNewUserEntityReady(dto);
+        MIUser user = getNewUserEntityReady(userDTO);
         user = userRepository.save(user);
         log.info("UserService - addUser() - MIUser = {}", user);
 
         return user;
     }
 
-    private MIUser getNewUserEntityReady(UserDTO dto) {
+    private MIUser getNewUserEntityReady(UserDTO userDTO) {
 
         LocalDateTime time = LocalDateTime.now();
-        List<Role> roles = roleService.checkAndGetRoles(dto.getRoles());
-        dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+        List<Role> roles = roleService.checkAndGetRoles(userDTO.getRoles());
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
 
-        MIUser user = MIUserTransformer.fromDTO(dto);
+        MIUser user = MIUserTransformer.fromDTO(userDTO);
         user.setCreated(time);
         user.setUpdated(time);
         user.setRoles(roles);
@@ -63,9 +63,9 @@ public class UserService {
         return user;
     }
 
-    public MIUser getUserById(String id) {
+    public MIUser getUserById(String userId) {
 
-        MIUser user = userRepository.findById(id)
+        MIUser user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO));
         log.info("UserService - getUserById() - UserDTO={}", user);
 
@@ -88,17 +88,17 @@ public class UserService {
         return exists;
     }
 
-    public MIUser updateUserById(UserDTO dto, String id) {
+    public MIUser updateUserById(UserDTO userDTO, String userId) {
 
-        MIUser user = userRepository.findById(id)
+        MIUser user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO));
 
         List<Role> roles;
 
-        user = MIUserTransformer.fromDTO(user, dto);
+        user = MIUserTransformer.fromDTO(user, userDTO);
 
-        if (null != dto.getRoles() && !dto.getRoles().isEmpty()) {
-            roles = roleService.checkAndGetRoles(dto.getRoles());
+        if (null != userDTO.getRoles() && !userDTO.getRoles().isEmpty()) {
+            roles = roleService.checkAndGetRoles(userDTO.getRoles());
             user.setRoles(roles);
         }
 
@@ -108,9 +108,9 @@ public class UserService {
         return user;
     }
 
-    public void deleteUserById(String id) {
+    public void deleteUserById(String userId) {
 
-        MIUser user = userRepository.findById(id)
+        MIUser user = userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(Messages.USER_NOT_FOUND_INFO));
 
         userRepository.delete(user);
