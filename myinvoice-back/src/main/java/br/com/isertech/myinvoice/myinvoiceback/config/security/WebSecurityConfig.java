@@ -26,8 +26,7 @@ public class WebSecurityConfig {
     @Autowired
     AuthenticationEntryPointImpl authenticationEntryPoint;
 
-    //    private static final String[] AUTH_WHITELIST = {"/auth/**", "/roles/**"};
-    private static final String[] AUTH_WHITELIST = {"/company/**"};
+    private static final String[] AUTH_WHITELIST = {"/auth/**", "/roles/**"};
 
     @Bean
     public AuthenticationJwtFilter authenticationJwtFilter() {
@@ -41,7 +40,7 @@ public class WebSecurityConfig {
                 .exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint(authenticationEntryPoint))
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/companies/**").permitAll()
+                        .requestMatchers(AUTH_WHITELIST).permitAll()
                         .anyRequest().authenticated())
                 .csrf(AbstractHttpConfigurer::disable)
                 .logout(LogoutConfigurer::permitAll);
