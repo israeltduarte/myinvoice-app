@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError, map } from 'rxjs';
 import { Company } from '../models/company';
 
 @Injectable()
@@ -10,9 +10,16 @@ export class CompanyService {
   constructor(private http: HttpClient) {}
 
   getAllCompaniesByUserId(userId: string): Observable<Company[]> {
-    return this.http.get<Company[]>(
-      this.baseURL + '/users/' + userId + '/companies'
-    );
+    return this.http
+      .get<Company[]>(this.baseURL + '/users/' + userId + '/companies')
+      .pipe(
+        map((companies) => {
+          return companies;
+        }),
+        catchError(() => {
+          return [];
+        })
+      );
   }
 
   getCompany(userId: string, companyId: string): Observable<Company> {

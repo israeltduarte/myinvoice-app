@@ -5,13 +5,12 @@ import br.com.isertech.myinvoice.myinvoiceback.dto.CompanyDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Company;
 import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
 import br.com.isertech.myinvoice.myinvoiceback.error.exception.CompanyNotFoundException;
-import br.com.isertech.myinvoice.myinvoiceback.error.exception.UserNotFoundException;
 import br.com.isertech.myinvoice.myinvoiceback.repository.CompanyRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.CompanyTransformer;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -25,10 +24,10 @@ public class CompanyService {
         this.companyRepository = companyRepository;
     }
 
-    public Page<Company> getAllCompanies(Pageable pageable) {
+    public List<Company> getAllCompanies() {
 
-        Page<Company> companies = companyRepository.findAll(pageable);
-        log.info("CompanyService - getAllCompanies() - Page<Company>={}", companies);
+        List<Company> companies = companyRepository.findAll();
+        log.info("CompanyService - getAllCompanies() - List<Company>={}", companies);
 
         return companies;
     }
@@ -66,11 +65,11 @@ public class CompanyService {
         log.info("CompanyService - deleteAllCompanies()");
     }
 
-    public Page<Company> getAllCompaniesByUserId(String id, Pageable pageable) {
+    public List<Company> getAllCompaniesByUserId(String id) {
 
         MIUser user = userService.getUserById(id);
-        Page<Company> companies = companyRepository.findAllByUserId(user.getId(), pageable);
-        log.info("CompanyService - getAllCompaniesByUserId() - Page<Company>={}", companies);
+        List<Company> companies = companyRepository.findAllByUserId(user.getId());
+        log.info("CompanyService - getAllCompaniesByUserId() - List<Company>={}", companies);
 
         return companies;
     }

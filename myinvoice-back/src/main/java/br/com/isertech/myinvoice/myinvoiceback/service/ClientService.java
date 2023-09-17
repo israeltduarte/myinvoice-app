@@ -5,13 +5,12 @@ import br.com.isertech.myinvoice.myinvoiceback.dto.ClientDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Client;
 import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
 import br.com.isertech.myinvoice.myinvoiceback.error.exception.ClientNotFoundException;
-import br.com.isertech.myinvoice.myinvoiceback.error.exception.UserNotFoundException;
 import br.com.isertech.myinvoice.myinvoiceback.repository.ClientRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.ClientTransformer;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Slf4j
 @Service
@@ -25,10 +24,10 @@ public class ClientService {
         this.clientRepository = clientRepository;
     }
 
-    public Page<Client> getAllClients(Pageable pageable) {
+    public List<Client> getAllClients() {
 
-        Page<Client> clients = clientRepository.findAll(pageable);
-        log.info("ClientService - getAllClients() - Page<Client>={}", clients);
+        List<Client> clients = clientRepository.findAll();
+        log.info("ClientService - getAllClients() - List<Client>={}", clients);
 
         return clients;
     }
@@ -77,11 +76,11 @@ public class ClientService {
         log.info("ClientService - deleteAllClients()");
     }
 
-    public Page<Client> getAllClientsByUserId(String id, Pageable pageable) {
+    public List<Client> getAllClientsByUserId(String id) {
 
         MIUser user = userService.getUserById(id);
-        Page<Client> clients = clientRepository.findAllByUserId(user.getId(), pageable);
-        log.info("ClientService - getAllClientsByUserId() - Page<Client>={}", clients);
+        List<Client> clients = clientRepository.findAllByUserId(user.getId());
+        log.info("ClientService - getAllClientsByUserId() - List<Client>={}", clients);
 
         return clients;
     }

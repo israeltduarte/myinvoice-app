@@ -16,6 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
@@ -55,11 +57,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}/companies")
-    public ResponseEntity<Page<Company>> getAllCompaniesByUserId(@PathVariable String id, Pageable pageable) {
+    public ResponseEntity<List<Company>> getAllCompaniesByUserId(@PathVariable String id) {
 
-        Page<Company> companies = companyService.getAllCompaniesByUserId(id, pageable);
+        List<Company> companies = companyService.getAllCompaniesByUserId(id);
         if (!companies.isEmpty()) {
-            for (Company company : companies.toList()) {
+            for (Company company : companies) {
                 company.add(linkTo(methodOn(UserController.class).getUserById(company.getId())).withSelfRel());
             }
         }
@@ -68,11 +70,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}/clients")
-    public ResponseEntity<Page<Client>> getAllClientsByUserId(@PathVariable String id, Pageable pageable) {
+    public ResponseEntity<List<Client>> getAllClientsByUserId(@PathVariable String id) {
 
-        Page<Client> clients = clientService.getAllClientsByUserId(id, pageable);
+        List<Client> clients = clientService.getAllClientsByUserId(id);
         if (!clients.isEmpty()) {
-            for (Client client : clients.toList()) {
+            for (Client client : clients) {
                 client.add(linkTo(methodOn(UserController.class).getUserById(client.getId())).withSelfRel());
             }
         }

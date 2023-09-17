@@ -25,9 +25,9 @@ public class InvoiceController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Invoice>> getAllInvoices(Pageable pageable) {
+    public ResponseEntity<List<Invoice>> getAllInvoices() {
 
-        Page<Invoice> invoices = this.invoiceService.getAllInvoices(pageable);
+        List<Invoice> invoices = this.invoiceService.getAllInvoices();
 
         return ResponseEntity.status(HttpStatus.OK).body(invoices);
     }

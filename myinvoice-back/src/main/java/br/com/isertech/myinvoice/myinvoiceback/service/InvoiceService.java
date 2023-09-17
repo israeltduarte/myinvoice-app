@@ -11,8 +11,6 @@ import br.com.isertech.myinvoice.myinvoiceback.repository.InvoiceRepository;
 import br.com.isertech.myinvoice.myinvoiceback.util.InvoiceTransformer;
 import br.com.isertech.myinvoice.myinvoiceback.util.ItemTransformer;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,10 +29,10 @@ public class InvoiceService {
         this.clientService = clientService;
     }
 
-    public Page<Invoice> getAllInvoices(Pageable pageable) {
+    public List<Invoice> getAllInvoices() {
 
-        Page<Invoice> invoices = invoiceRepository.findAll(pageable);
-        log.info("InvoiceService - getAllInvoices() - Page<Invoice>={}", invoices);
+        List<Invoice> invoices = invoiceRepository.findAll();
+        log.info("InvoiceService - getAllInvoices() - List<Invoice>={}", invoices);
 
         return invoices;
     }

@@ -3,12 +3,12 @@ package br.com.isertech.myinvoice.myinvoiceback.controller;
 import br.com.isertech.myinvoice.myinvoiceback.dto.ClientDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.Client;
 import br.com.isertech.myinvoice.myinvoiceback.service.ClientService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -26,11 +26,11 @@ public class ClientController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<Client>> getAllClients(Pageable pageable) {
+    public ResponseEntity<List<Client>> getAllClients() {
 
-        Page<Client> clients = clientService.getAllClients(pageable);
+        List<Client> clients = clientService.getAllClients();
         if (!clients.isEmpty()) {
-            for (Client client : clients.toList()) {
+            for (Client client : clients) {
                 client.add(linkTo(methodOn(ClientController.class).getClientById(client.getId())).withSelfRel());
             }
         }

@@ -5,11 +5,11 @@
 <div class="company-list">
   <input type="text" placeholder="Search..." [(ngModel)]="searchText" />
 
-  <div *ngIf="(filteredCompanies | async)?.length === 0">
+  <!-- <div *ngIf="(filteredCompanies | async)?.length === 0">
     No companies found.
-  </div>
+  <Ø/div> -->
 
-  <div *ngFor="let company of filteredCompanies | async" class="company-card">
+  <div *ngFor="let company of companies$ | async" class="company-card">
     <div class="company-info">
       <h3 class="company-name">{{ company.name }}</h3>
       <div class="company-details">
