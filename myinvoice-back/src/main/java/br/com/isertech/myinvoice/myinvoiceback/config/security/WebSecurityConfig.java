@@ -26,7 +26,7 @@ public class WebSecurityConfig {
     @Autowired
     AuthenticationEntryPointImpl authenticationEntryPoint;
 
-    private static final String[] AUTH_WHITELIST = {"/auth/**", "/roles/**"};
+    private static final String[] AUTH_WHITELIST = {"/api/auth/**", "/api/roles/**"};
 
     @Bean
     public AuthenticationJwtFilter authenticationJwtFilter() {

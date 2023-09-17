@@ -6,6 +6,8 @@ import br.com.isertech.myinvoice.myinvoiceback.dto.JwtDTO;
 import br.com.isertech.myinvoice.myinvoiceback.dto.LoginDTO;
 import br.com.isertech.myinvoice.myinvoiceback.dto.UserDTO;
 import br.com.isertech.myinvoice.myinvoiceback.entity.MIUser;
+import br.com.isertech.myinvoice.myinvoiceback.error.exception.EmailAlreadyExistsException;
+import br.com.isertech.myinvoice.myinvoiceback.error.exception.UserAlreadyExistsException;
 import br.com.isertech.myinvoice.myinvoiceback.service.RoleService;
 import br.com.isertech.myinvoice.myinvoiceback.service.UserService;
 import jakarta.validation.Valid;
@@ -22,7 +24,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthenticationController {
 
     @Autowired
@@ -44,10 +46,10 @@ public class AuthenticationController {
     public ResponseEntity<Object> registerUser(@Valid @RequestBody UserDTO dto) {
 
         if (userService.existsByUsername(dto.getUsername())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Messages.USERNAME_ALREADY_EXISTS);
+            throw new UserAlreadyExistsException(Messages.USERNAME_ALREADY_EXISTS);
         }
         if (userService.existsByEmail(dto.getEmail())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(Messages.EMAIL_ALREADY_EXISTS);
+            throw new EmailAlreadyExistsException(Messages.EMAIL_ALREADY_EXISTS);
         }
         MIUser user = userService.addUser(dto);
 

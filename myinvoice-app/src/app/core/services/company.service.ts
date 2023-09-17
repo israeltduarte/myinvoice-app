@@ -5,25 +5,25 @@ import { Company } from '../models/company';
 
 @Injectable()
 export class CompanyService {
-  baseURL: string = 'localhost:8080/';
+  baseURL: string = 'http://localhost:8080/mi-myinvoice-back/api';
 
   constructor(private http: HttpClient) {}
 
-  getCompany(userId: string, companyId: string): Observable<Company> {
-    return this.http.get<Company>(
-      this.baseURL + 'user/' + userId + '/company' + companyId
+  getAllCompaniesByUserId(userId: string): Observable<Company[]> {
+    return this.http.get<Company[]>(
+      this.baseURL + '/users/' + userId + '/companies'
     );
   }
 
-  getAllCompanies(userId: string): Observable<Company[]> {
-    return this.http.get<Company[]>(
-      this.baseURL + '/user' + userId + '/company'
+  getCompany(userId: string, companyId: string): Observable<Company> {
+    return this.http.get<Company>(
+      this.baseURL + '/users/' + userId + '/companies' + companyId
     );
   }
 
   addCompany(userId: string, company: Company): Observable<Company> {
     return this.http.post<Company>(
-      this.baseURL + 'user/' + userId + '/company',
+      this.baseURL + '/users/' + userId + '/companies',
       company
     );
   }

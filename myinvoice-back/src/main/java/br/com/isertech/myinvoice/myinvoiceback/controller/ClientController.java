@@ -14,8 +14,9 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/clients")
+@RequestMapping("/api/clients")
 @Transactional
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class ClientController {
 
     private final ClientService clientService;
