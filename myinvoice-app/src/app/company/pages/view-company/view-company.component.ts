@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Company, User } from 'src/app/core/models';
+import { Observable } from 'rxjs';
+import { Company } from 'src/app/core/models';
 import { CompanyService } from 'src/app/core/services';
-import data from '../../../../api/data.json';
 
 @Component({
   selector: 'app-view-company',
@@ -10,22 +10,31 @@ import data from '../../../../api/data.json';
   styleUrls: ['./view-company.component.css'],
 })
 export class ViewCompanyComponent {
-  user!: User;
   selectedCompany!: Company;
-  companies!: Company[];
+  companies$!: Observable<Company[]>;
 
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    this.companies = this.getAllCompanies('MyInvoice_User_01');
-    this.selectedCompany = this.companies[0];
+    let userId = 'MI_MIUser_0916af69-a093-4086-ba0b-26376faf4242';
+    this.getAllCompanies(userId);
+
+    this.companies$.subscribe((companies: Company[]) => {
+      if (companies.length > 0) {
+        this.selectedCompany = companies[0];
+      }
+    });
   }
 
-  getCompany(userId: string): Company {
-    return data.company;
+  getAllCompanies(userId: string): void {
+    this.companies$ = this.companyService.getAllCompaniesByUserId(userId);
   }
 
-  getAllCompanies(userId: string): Company[] {
-    return data.companies;
+  getCompany(userId: string, companyId: string) {
+    this.companyService
+      .getCompanyByUserId(userId, companyId)
+      .subscribe((company: Company) => {
+        this.selectedCompany = company;
+      });
   }
 }

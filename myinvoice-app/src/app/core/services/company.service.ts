@@ -22,17 +22,32 @@ export class CompanyService {
       );
   }
 
-  getCompany(userId: string, companyId: string): Observable<Company> {
-    return this.http.get<Company>(
-      this.baseURL + '/users/' + userId + '/companies' + companyId
-    );
+  getCompanyByUserId(userId: string, companyId: string): Observable<Company> {
+    return this.http
+      .get<Company>(
+        this.baseURL + '/users/' + userId + '/companies' + companyId
+      )
+      .pipe(
+        map((company) => {
+          return company;
+        }),
+        catchError(() => {
+          return [];
+        })
+      );
   }
 
   addCompany(userId: string, company: Company): Observable<Company> {
-    return this.http.post<Company>(
-      this.baseURL + '/users/' + userId + '/companies',
-      company
-    );
+    return this.http
+      .post<Company>(this.baseURL + '/users/' + userId + '/companies', company)
+      .pipe(
+        map((company) => {
+          return company;
+        }),
+        catchError(() => {
+          return [];
+        })
+      );
   }
 
   updateCompany(

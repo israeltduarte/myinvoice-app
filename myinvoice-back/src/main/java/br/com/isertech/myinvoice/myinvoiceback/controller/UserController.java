@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,6 +58,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/companies")
+    @Transactional
     public ResponseEntity<List<Company>> getAllCompaniesByUserId(@PathVariable String id) {
 
         List<Company> companies = companyService.getAllCompaniesByUserId(id);
@@ -70,6 +72,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/clients")
+    @Transactional
     public ResponseEntity<List<Client>> getAllClientsByUserId(@PathVariable String id) {
 
         List<Client> clients = clientService.getAllClientsByUserId(id);

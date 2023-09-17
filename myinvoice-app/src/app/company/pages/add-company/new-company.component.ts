@@ -17,13 +17,15 @@ export class NewCompanyComponent {
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    // this.newCompany = data.company;
-    data.companies.push(this.newCompany);
-    // this.companyService.getCompany('MyInvoice_Company_01');
+    this.newCompany = data.company;
   }
 
   addNewCompany(): void {
-    // this.companyService.addCompany(this.user.id, this.newCompany);
+    console.log('add new company');
+    this.companyService.addCompany(
+      'MI_MIUser_0916af69-a093-4086-ba0b-26376faf4242',
+      this.newCompany
+    );
     this.resetCompanyForm();
   }
 

@@ -10,7 +10,7 @@
       class="form-control"
       [(ngModel)]="selectedCompany"
     >
-      <option *ngFor="let company of companies" [ngValue]="company">
+      <option *ngFor="let company of companies$ | async" [ngValue]="company">
         {{ company.name }}
       </option>
     </select>

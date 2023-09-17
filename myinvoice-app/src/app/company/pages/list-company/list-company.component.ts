@@ -17,7 +17,6 @@ export class ListCompanyComponent {
   constructor(private companyService: CompanyService) {}
 
   ngOnInit() {
-    console.log('initiated');
     this.getAllCompanies('MI_MIUser_0916af69-a093-4086-ba0b-26376faf4242');
   }
 
