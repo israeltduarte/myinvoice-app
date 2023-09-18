@@ -21,11 +21,14 @@ export class NewCompanyComponent {
   }
 
   addNewCompany(): void {
-    console.log('add new company');
-    this.companyService.addCompany(
-      'MI_MIUser_0916af69-a093-4086-ba0b-26376faf4242',
-      this.newCompany
-    );
+    this.companyService
+      .addCompany(
+        'MI_MIUser_0916af69-a093-4086-ba0b-26376faf4242',
+        this.newCompany
+      )
+      .subscribe((data: Company) => {
+        console.log(data);
+      });
     this.resetCompanyForm();
   }
 

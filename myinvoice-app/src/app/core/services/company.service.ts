@@ -14,6 +14,7 @@ export class CompanyService {
       .get<Company[]>(this.baseURL + '/users/' + userId + '/companies')
       .pipe(
         map((companies) => {
+          console.log(companies);
           return companies;
         }),
         catchError(() => {
@@ -29,6 +30,7 @@ export class CompanyService {
       )
       .pipe(
         map((company) => {
+          console.log(company);
           return company;
         }),
         catchError(() => {
@@ -38,16 +40,15 @@ export class CompanyService {
   }
 
   addCompany(userId: string, company: Company): Observable<Company> {
-    return this.http
-      .post<Company>(this.baseURL + '/users/' + userId + '/companies', company)
-      .pipe(
-        map((company) => {
-          return company;
-        }),
-        catchError(() => {
-          return [];
-        })
-      );
+    return this.http.post<Company>(this.baseURL + '/companies', company).pipe(
+      map((company) => {
+        console.log(company);
+        return company;
+      }),
+      catchError(() => {
+        return [];
+      })
+    );
   }
 
   updateCompany(
@@ -56,7 +57,7 @@ export class CompanyService {
     company: Company
   ): Observable<Company> {
     return this.http.put<Company>(
-      this.baseURL + 'user/' + userId + '/company' + companyId,
+      this.baseURL + '/company' + companyId,
       company
     );
   }
